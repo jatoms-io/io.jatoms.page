@@ -1,0 +1,49 @@
+<nav class="white lighten-1" role="navigation">
+	<div class="nav-wrapper container">
+		<a id="logo-container" class="brand-logo" href="{{ "/" | relative_url }}"><img src="{{site.logo | relative_url | prepend: "/" | prepend: site.url}}" class="logo"><span class="hide-on-med-and-down">{{site.title}}</span></a>
+	{% assign page_paths = site.pages | where_exp:"item", "item.navbaritem == true" | map: "path"%}
+	
+	  <ul class="right hide-on-med-and-down">
+		<li><a href="{{ "" | relative_url | prepend: site.url }}">Home </a></li>
+		{% for path in page_paths %}
+			{% assign my_page = site.pages | where: "path", path | first %}
+			<li><a href="{{ my_page.url | relative_url }}">{{ my_page.title | escape | default: "No Title!"}}</a></li>
+		{% endfor %}
+		{% if site.github_button %}
+			<li>
+				<a title="{{site.github_button.project}} on GitHub" href="{{ "https://github.com/" | append: site.github_button.user | append: "/" | append: site.github_button.project}}"> 
+					<svg class="nav-button" xmlns="http://www.w3.org/2000/svg">
+						<title>github</title>
+						<path d="M10 0C4.477 0 0 4.477 0 10c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.268 2.75 1.026A9.578 9.578 0 0 1 10 4.836c.85.004 1.705.114 2.504.337 1.909-1.294 2.747-1.026 2.747-1.026.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C17.137 18.163 20 14.418 20 10c0-5.523-4.478-10-10-10" fill-rule="evenodd">
+						</path>
+					</svg>					
+				</a>
+			</li>
+		{% endif %}
+		
+		{% if site.twitter_button %}
+			<li>
+				<a title="{{site.twitter_button.user}} on Twitter" href="{{ "https://twitter.com/" | append: site.twitter_button.user }}"> 
+					<svg class="nav-button" xmlns="http://www.w3.org/2000/svg">
+						<title>twitter</title>
+						<path d="M15.115 7.788c.005.11.009.223.009.335 0 3.43-2.611 7.384-7.386 7.384-1.467 0-2.831-.43-3.98-1.166a5.244 5.244 0 0 0 3.843-1.075 2.596 2.596 0 0 1-2.424-1.801 2.645 2.645 0 0 0 1.171-.045 2.597 2.597 0 0 1-2.082-2.544v-.033c.351.194.752.311 1.177.324a2.59 2.59 0 0 1-1.154-2.16c0-.475.127-.92.35-1.305A7.37 7.37 0 0 0 9.99 8.414a2.596 2.596 0 0 1 4.423-2.367 5.174 5.174 0 0 0 1.648-.63 2.602 2.602 0 0 1-1.142 1.436 5.17 5.17 0 0 0 1.491-.41 5.233 5.233 0 0 1-1.295 1.345M10 0C4.486 0 0 4.486 0 10s4.486 10 10 10 10-4.486 10-10S15.514 0 10 0" fill-rule="evenodd">
+						</path>
+					</svg>			
+				</a>
+			</li>
+		{% endif %}
+	  </ul>
+
+	  <ul id="nav-mobile" class="side-nav">
+		<li><a href="{{ "" | relative_url | prepend: site.url }}">Home</a></li>
+		<li class="divider"></li>
+		{% for path in page_paths %}
+			{% assign my_page = site.pages | where: "path", path | first %}
+			<li><a href="{{ my_page.url | relative_url }}">{{ my_page.title | escape | default: "No Title!"}}</a></li>
+			<li class="divider"></li>
+		{% endfor %}
+	  </ul>        
+
+	  <a data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+	</div>
+</nav>

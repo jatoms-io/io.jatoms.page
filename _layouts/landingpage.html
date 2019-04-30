@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {%- include templates/head.html -%}
+  
+  {%- capture style -%} {%- include styles/base.css -%} {%- include styles/landingpage.css -%} {%- endcapture -%}
+  
+  <style>
+	{{- style | strip_newlines -}}
+  </style>
+
+  <body>
+	<!-- Navigation Header -->
+	{% include templates/header.html %}
+	
+	<main>
+	<!-- HeroHeader -->
+	{% assign heroheader = site.landingpage | where_exp:"item", "item.layout == 'heroheader'" | first %}
+	{{ heroheader.output }}
+	
+	<div class="section container">
+	  <div class="row">
+		{% assign peptalks = site.landingpage | where_exp:"item", "item.layout == 'peptalk'"  %}
+		{% for peptalk in peptalks %}
+		  {{- peptalk.output -}}
+		{% endfor %}
+	  </div>
+	</div>
+      
+    <div class="secondary-background">
+		<div class="container">
+			<h4 class="center-align news-header"> News </h4>
+			<div class="row">
+			{% assign news = site.landingpage | where_exp:"item", "item.layout == 'news'" | sort: "published_at" | reverse  %}
+				{% for new in news %}
+					{{- new.output -}}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+  </main>
+
+    {% include templates/footer.html %}
+      
+    {% include templates/base_script.html %}
+	{% include templates/landingpage_script.html %}
+
+  </body>
+
+</html>
