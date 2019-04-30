@@ -2,7 +2,7 @@ FROM gitpod/workspace-full:latest
 
 # Install Jekyll dependencies
 USER root 
-RUN apt-get install ruby-full build-essential zlib1g-dev
+RUN apt-get install build-essential zlib1g-dev
 
 # Set up Gem installation directory and install Jekyll
 USER gitpod
