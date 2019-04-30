@@ -1,2 +1,2 @@
 # io.jatoms.page
-A repostory for the jatoms.io web page
+A repository for the jatoms.io web page
