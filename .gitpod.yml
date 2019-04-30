@@ -1,2 +1,5 @@
+image:
+  file: Dockerfile
+
 ports:
   - port: 4000
