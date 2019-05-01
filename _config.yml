@@ -1,0 +1,39 @@
+title: PDT
+author: Thomas Driessen
+email: thomas.driessen.td@gmail.com
+description: A Project Documentation Template for Jekyll
+
+# language to use in html tag, can be overriden by page.lang
+# lang: en
+
+sass:
+    style: compressed
+
+# You can look up the color names at http://materializecss.com/color.html
+colors:
+    primary_dark: black
+    primary_light: grey-darken-1
+    primary: grey-darken-3
+    accent: light-blue
+    primary_text: grey-darken-4
+    secondary_text: grey-darken-1
+    inverse_text: white
+    divider: grey-lighten-1
+    secondaryBackground: grey-lighten-4
+
+# path to logo without leading slash e.g. images/logo.png or just the file name if it is in the root directory
+logo: logo.png
+
+# Github data, if present there will be a GitHub button in the navbar
+github_button:
+  user: Sandared
+  project: io.jatoms.page
+
+# Twitter data, if present there will be a Twitter button in the navbar
+twitter_button:
+  user: SanfteSchorle
+
+# any of these collections is used for nested pages
+collections:
+  landingpage:
+    output: true

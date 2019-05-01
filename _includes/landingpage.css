@@ -1,0 +1,27 @@
+/* News */
+.news-header{margin-top:0px;margin-bottom:0px;padding-top:34px;padding-bottom:20px;text-align:left;font-weight:300;color:{{primaryLightColor}};}
+.newsitem-header{margin-bottom:14px;margin-top:14px;font-size:1.3rem;color:{{primaryColor}};font-weight:350;}
+.newsitem-header-row{margin-bottom:0px;}
+.newsitem-content{text-align:justify;}
+.newsitem-date{margin-top:0px;font-size:12px;color:{{accentColor}};font-style:italic;}
+.newsitem-divider-row{margin-top:14px;margin-bottom:14px;}
+.newsitem-date-card{box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);width:110px;height:105px;border-radius:3px;background-color:{{primaryColor}};color:{{inverseTextColor}};font-size:14px;margin-top:14px;}
+.newsitem-date-card-header{height:30px;background-color:{{primaryDarkColor}};border-radius:3px;}
+.newsitem-day-number{margin-top:-5px;margin-bottom:0px;font-size:25px;}
+.newsitem-day-of-week{margin:0px;padding-top:7px;font-size:11px;}
+.newsitem-year{margin-top:-5px;margin-bottom:0px;color:{{primaryLightColor}};}
+.newsitem-month{margin-bottom:0px;margin-top:3px;}
+.secondary-background{background: {{secondaryBackgroundColor}};}
+
+/* Heroheader */
+.heroheader-title{color:{{inverseTextColor}};padding-top:60px;margin:0px;font-size:50px;}
+.heroheader-subtitle{color:{{inverseTextColor}};font-size:30px;margin-top:0px;}
+.heroheader-version{color:{{inverseTextColor}};padding-bottom:60px;margin:0px;font-size:14px;}
+#titlebutton{background-color:{{accentColor}};}
+a:hover#titlebutton{color:{{inverseTextColor}};}
+#trianglify-content{background:linear-gradient(135deg, {{primaryDarkColor}}, {{primaryLightColor}});}
+
+/* Peptalks */
+.peptalkitem-icon{color:{{dividerColor}};}
+.peptalkitem-header{font-weight:350;}
+.peptalkitem-content{text-align:justify;}

@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: "en" }}">
 
-  {%- include templates/head.html -%}
-  
-  {%- capture style -%} {%- include styles/base.css -%} {%- include styles/landingpage.css -%} {%- endcapture -%}
-  
+  {%- include head.html -%}
+
+  {%- capture style -%} {%- include base.css -%} {%- include landingpage.css -%} {%- endcapture -%}
+
   <style>
 	{{- style | strip_newlines -}}
   </style>
 
   <body>
 	<!-- Navigation Header -->
-	{% include templates/header.html %}
-	
+	{% include header.html %}
+
 	<main>
 	<!-- HeroHeader -->
-	{% assign heroheader = site.landingpage | where_exp:"item", "item.layout == 'heroheader'" | first %}
-	{{ heroheader.output }}
-	
+	<div id="trianglify-content" class="center-align">
+        <h1 class="heroheader-title">Documentation Template</h1>
+        <p class="heroheader-subtitle" >GitHub Pages Documentation Template</p>
+        <p class="lead">
+            <a id="titlebutton" href="resources.html" class="waves-effect waves-light btn-large hoverable">Get Started!</a>
+        </p>
+        <p class="heroheader-version">Currently v1.0</p>
+    </div>
+
 	<div class="section container">
 	  <div class="row">
 		{% assign peptalks = site.landingpage | where_exp:"item", "item.layout == 'peptalk'"  %}
@@ -26,7 +32,7 @@
 		{% endfor %}
 	  </div>
 	</div>
-      
+
     <div class="secondary-background">
 		<div class="container">
 			<h4 class="center-align news-header"> News </h4>
@@ -40,10 +46,23 @@
 	</div>
   </main>
 
-    {% include templates/footer.html %}
-      
-    {% include templates/base_script.html %}
-	{% include templates/landingpage_script.html %}
+    {% include footer.html %}
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/1.1.0/trianglify.min.js"></script>
+    <script>
+    var something = document.getElementById('trianglify-content');
+    var dimensions = something.getClientRects()[0];
+    var pattern = Trianglify({
+        width: dimensions.width,
+        height: dimensions.height,
+        cell_size: {{ page.trianglify.cell_size | default: 100 }},
+        variance: {{ page.trianglify.variance | default: 1 }},
+        x_colors: ['{{primaryDarkColor}}', '{{primaryColor}}', '{{primaryLightColor}}']
+        //x_colors: ['{{primaryLightColor}}','{{primaryColor}}', '{{accentColor}}', '{{primaryColor}}','{{primaryLightColor}}']
+    }).png();
+    var pattern64 = pattern.substr(pattern.indexOf("base64") + 7);
+    something.style.backgroundImage = 'url(data:image/png;base64,' + pattern64;
+    </script>
 
   </body>
 

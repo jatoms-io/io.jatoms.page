@@ -1,0 +1,36 @@
+{% assign primaryColor = site.data.colormapper[site.colors.primary] %}
+{% assign primaryLightColor = site.data.colormapper[site.colors.primary_light] %}
+{% assign primaryDarkColor = site.data.colormapper[site.colors.primary_dark] %}
+{% assign accentColor = site.data.colormapper[site.colors.accent] %}
+{% assign primaryTextColor = site.data.colormapper[site.colors.primary_text] %}
+{% assign secondaryTextColor = site.data.colormapper[site.colors.secondary_text] %}
+{% assign inverseTextColor = site.data.colormapper[site.colors.inverse_text] %}
+{% assign dividerColor = site.data.colormapper[site.colors.divider] %}
+{% assign secondaryBackgroundColor = site.data.colormapper[site.colors.secondaryBackground]%}
+a {color: {{primaryLightColor}};fill:{{primaryColor}};}
+a:hover {color: {{accentColor}};fill:{{accentColor}};}
+h1,h2,h3,h4,h5,h6{color: {{primaryColor}};}
+body{
+	color: {{primaryTextColor}};
+	display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+nav ul a{color: {{primaryColor}};}
+nav .brand-logo{color: {{primaryColor}}}
+.justify-align{text-align:justify;}
+nav a{color: {{primaryColor}};}
+main{flex: 1 0 auto;}
+.side-nav li>a{color: {{primaryColor}};}
+.side-nav .collapsible-header, .side-nav.fixed .collapsible-header{padding-left:32px;}
+.side-nav .collapsible-body li a, .side-nav.fixed .collapsible-body li a{padding-left:47px;}
+h1,h2,h3,h4,h5,h6{-webkit-font-smoothing: antialiased;}
+.icon-block{padding: 0 15px;}
+.icon-block .material-icons{font-size: inherit;}
+.row{margin-bottom:0px;}
+.logo{width:37px;height:37px;margin-right:10px;margin-bottom:-8px;}
+.page-footer{background-color:{{accentColor}};}
+.nav-button{width:20px; height:20px; viewBox:0 0 20 20;}
+footer h5{color:{{inverseTextColor}};}
+hr{background-color:{{dividerColor}};}
+.divider{background-color:{{dividerColor}};}
