@@ -5,6 +5,4 @@ ports:
   - port: 4000
     onOpen: open-preview
 tasks:
-  - command: bundle install
-    command: bundle exec jekyll serve --host=0.0.0.0
-
+  - command: bundle install && bundle exec jekyll serve --host=0.0.0.0
