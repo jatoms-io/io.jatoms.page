@@ -1,13 +1,10 @@
-title: PDT
+title: jatoms.io
 author: Thomas Driessen
 email: thomas.driessen.td@gmail.com
-description: A Project Documentation Template for Jekyll
+description: jatoms.io
 
 # language to use in html tag, can be overriden by page.lang
 # lang: en
-
-sass:
-    style: compressed
 
 # You can look up the color names at http://materializecss.com/color.html
 colors:
