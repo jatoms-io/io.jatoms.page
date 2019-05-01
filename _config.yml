@@ -1,7 +1,8 @@
-title: jatoms.io
+title: JATOMS
 author: Thomas Driessen
 email: thomas.driessen.td@gmail.com
-description: jatoms.io
+description: OSGi and Beyond
+contect_page: https://twitter.com/SanfteSchorle
 
 # language to use in html tag, can be overriden by page.lang
 # lang: en
@@ -34,3 +35,7 @@ twitter_button:
 collections:
   landingpage:
     output: true
+  resources:
+    output: true
+    news_relevant: true
+    navbar_title: Resources

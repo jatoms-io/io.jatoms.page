@@ -16,8 +16,8 @@
 	<main>
 	<!-- HeroHeader -->
 	<div id="trianglify-content" class="center-align">
-        <h1 class="heroheader-title">JATOMS.IO</h1>
-        <p class="heroheader-subtitle" >OSGi and Beyond</p>
+        <h1 class="heroheader-title">{{site.title}}</h1>
+        <p class="heroheader-subtitle">{{site.description}}</p>
         <p class="lead">
             <a id="titlebutton" href="resources.html" class="waves-effect waves-light btn-large hoverable">Get Started!</a>
         </p>
@@ -37,10 +37,50 @@
 		<div class="container">
 			<h4 class="center-align news-header"> News </h4>
 			<div class="row">
-			{% assign news = site.landingpage | where_exp:"item", "item.layout == 'news'" | sort: "published_at" | reverse  %}
-				{% for new in news %}
-					{{- new.output -}}
-				{% endfor %}
+
+            {% assign news = '' | split: '' %}
+            {% for collection in site.collections %}
+                {% if collection.news_relevant %}
+                    {% assign items = collection.docs | where_exp:"doc", "doc.published_at" %}
+                    {% assign items = items | where_exp:"item", "item.abstract" %}
+                    {% assign items = items | where_exp:"item", "item.title" %}
+                    {% assign news = news | concat: items %}
+                {% endif %}
+            {% endfor %}
+
+            {% assign news = news | sort: "published_at" | reverse %}
+            {% for new in news limit: 5 %}
+                <div class="col s12 m4 l3 hide-on-small-only">
+                    <div class="row newsitem-header-row">
+                        <div class="col push-m3">
+                            <div class="newsitem-date-card center-align">
+                                <div class="newsitem-date-card-header">
+                                    <p class="newsitem-day-of-week">{{ new.published_at | date: "%A" }}</p>
+                                </div>
+                            <div>
+                                <p class="newsitem-month">{{ new.published_at | date: "%b" }}</p>
+                                <p class="newsitem-day-number">{{ new.published_at | date: "%d" }}</p>
+                                <p class="newsitem-year">{{ new.published_at | date: "%Y" }}</p>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m7 l8 light newsitem-content">
+                    <h6 class="newsitem-header">{{new.title}}</h6>
+                    <p class="newsitem-date hide-on-med-and-up">{{ new.published_at | date: "%B %d, %Y" }}<p>
+                    {{new.abstract}}
+                </div>
+                <div class="col s12">
+                    <div class="row newsitem-divider-row">
+                        <div class="col s10 push-s1 m8 push-m2">
+                            <div class="divider"></div>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
 			</div>
 		</div>
 	</div>

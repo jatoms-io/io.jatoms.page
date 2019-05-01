@@ -1,14 +1,14 @@
 <nav class="white lighten-1" role="navigation">
 	<div class="nav-wrapper container">
 		<a id="logo-container" class="brand-logo" href="{{ "/" | relative_url }}"><img src="{{site.logo | relative_url | prepend: "/" | prepend: site.url}}" class="logo"><span class="hide-on-med-and-down">{{site.title}}</span></a>
-	    {% assign page_paths = site.pages | where_exp:"item", "item.navbaritem == true" | map: "path"%}
+	    {% assign navbaritems = site.collections | where_exp: "item", "item.navbar_title" %}
 
 	  <ul class="right hide-on-med-and-down">
 		<li><a href="{{ "" | relative_url | prepend: site.url }}">Home </a></li>
-		{% for path in page_paths %}
-			{% assign my_page = site.pages | where: "path", path | first %}
-			<li><a href="{{ my_page.url | relative_url }}">{{ my_page.title | escape | default: "No Title!"}}</a></li>
+		{% for navbaritem in navbaritems %}
+			<li><a href="{{navbaritem.label}}/index.html">{{navbaritem.navbar_title}}</a></li>
 		{% endfor %}
+
 		{% if site.github_button %}
 			<li>
 				<a title="{{site.github_button.project}} on GitHub" href="{{ "https://github.com/" | append: site.github_button.user | append: "/" | append: site.github_button.project}}">
@@ -37,9 +37,8 @@
 	  <ul id="nav-mobile" class="side-nav">
 		<li><a href="{{ "" | relative_url | prepend: site.url }}">Home</a></li>
 		<li class="divider"></li>
-		{% for path in page_paths %}
-			{% assign my_page = site.pages | where: "path", path | first %}
-			<li><a href="{{ my_page.url | relative_url }}">{{ my_page.title | escape | default: "No Title!"}}</a></li>
+		{% for navbaritem in navbaritems %}
+			<li><a href="{{navbaritem.label}}/index.html}}">{{navbaritem.navbar_title}}</a></li>
 			<li class="divider"></li>
 		{% endfor %}
 	  </ul>
