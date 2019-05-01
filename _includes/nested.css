@@ -1,0 +1,13 @@
+/* Cards */
+.card-title{color: {{primaryTextColor}};}
+.card-content{color: {{secondaryTextColor}};}
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating){color: {{primaryColor}};}
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating):hover{color: {{accentColor}};}
+.card.small{height: 225px;}
+
+/* Breadcrumbs */
+nav{background-color: {{inverseTextColor}};}
+a.breadcrumb{color: {{primaryLightColor}};}
+.breadcrumb:last-child{color:{{accentColor}};}
+.breadcrumb:before{color:{{primaryLightColor}};font-size:15px;}
+nav.breadcrumbs{box-shadow:none;margin-top:4px;}

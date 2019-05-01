@@ -1,0 +1,51 @@
+/* Code Highlighting */
+.highlight .c { color: {{dividerColor}}; font-style: italic } /* Comment */
+.highlight .k { color: {{primaryTextColor}}; font-weight: bold } /* Keyword */
+.highlight .cm { color: {{dividerColor}}; font-style: italic } /* Comment.Multiline */
+.highlight .c1 { color: {{dividerColor}}; font-style: italic } /* Comment.Single */
+.highlight .kc { color: {{primaryColor}}; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: {{primaryTextColor}}; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: {{primaryColor}}; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: {{primaryColor}}; font-weight: bold } /* Keyword.Pseudo */
+.highlight .kr { color: {{primaryColor}}; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: {{primaryColor}}; font-weight: bold } /* Keyword.Type */
+.highlight .s { color: {{primaryLightColor}} } /* Literal.String */
+.highlight .na { color: {{accentColor}} } /* Name.Attribute */
+.highlight .nc { color: {{accentColor}}} /* Name.Class */
+.highlight .nd { color: {{secondaryTextColor}} } /* Name.Decorator */
+.highlight .nf { color: {{accentColor}} } /* Name.Function */
+.highlight .mf { color: {{primaryLightColor}} } /* Literal.Number.Float */
+.highlight .mh { color: {{primaryLightColor}} } /* Literal.Number.Hex */
+.highlight .mi { color: {{primaryLightColor}} } /* Literal.Number.Integer */
+.highlight .mo { color: {{primaryLightColor}} } /* Literal.Number.Oct */
+.highlight .sb { color: {{primaryLightColor}} } /* Literal.String.Backtick */
+.highlight .sc { color: {{primaryLightColor}} } /* Literal.String.Char */
+.highlight .sd { color: {{primaryLightColor}} } /* Literal.String.Doc */
+.highlight .s2 { color: {{primaryLightColor}} } /* Literal.String.Double */
+.highlight .se { color: {{primaryLightColor}} } /* Literal.String.Escape */
+.highlight .sh { color: {{primaryLightColor}} } /* Literal.String.Heredoc */
+.highlight .si { color:{{primaryLightColor}} } /* Literal.String.Interpol */
+.highlight .sx { color: {{primaryLightColor}} } /* Literal.String.Other */
+.highlight .sr { color: {{primaryLightColor}} } /* Literal.String.Regex */
+.highlight .s1 { color: {{primaryLightColor}} } /* Literal.String.Single */
+.highlight .ss { color: {{primaryLightColor}} } /* Literal.String.Symbol */
+.highlight {tab-size: 4;}
+div.highlighter-rouge{padding:9px 14px;background:{{secondaryBackgroundColor}};border:1px solid {{dividerColor}};border-radius:4px; margin-bottom: 10px;}
+code.highlighter-rouge{padding:0px 3px;background:{{secondaryBackgroundColor}};border:1px solid {{dividerColor}};border-radius:3px;}
+
+/* Make headers a little bit smaller */
+h1{font-size:2.8rem;}
+h2{font-size:2.5rem;}
+h3{font-size:2.1rem;}
+h4{font-size:1.8rem;}
+h5{font-size:1.3rem;}
+h6{font-size:1rem;}
+
+/* Plain text */
+p{text-align:justify;}
+
+/* Blockquotes */
+blockquote{border-left:3px solid {{accentColor}};font-style:italic;font-weight:300;}
+
+/* Tables */
+table.striped>tbody>tr:nth-child(odd){background-color:{{secondaryBackgroundColor}};}

@@ -42,7 +42,7 @@
             {% for collection in site.collections %}
                 {% if collection.news_relevant %}
                     {% assign items = collection.docs | where_exp:"doc", "doc.published_at" %}
-                    {% assign items = items | where_exp:"item", "item.abstract" %}
+                    {% assign items = items | where_exp:"item", "item.description" %}
                     {% assign items = items | where_exp:"item", "item.title" %}
                     {% assign news = news | concat: items %}
                 {% endif %}
@@ -69,7 +69,7 @@
                 <div class="col s12 m7 l8 light newsitem-content">
                     <h6 class="newsitem-header">{{new.title}}</h6>
                     <p class="newsitem-date hide-on-med-and-up">{{ new.published_at | date: "%B %d, %Y" }}<p>
-                    {{new.abstract}}
+                    {{new.description}}
                 </div>
                 <div class="col s12">
                     <div class="row newsitem-divider-row">
