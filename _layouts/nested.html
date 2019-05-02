@@ -14,9 +14,18 @@
 	{% include header.html %}
   <main>
   <div class="container">
+        {% assign url_parts = page.url | split: '/' %}
 		<div class="row">
+            <div class="nav-wrapper">
+                <div class="col s12">
+                    {% for part in url_parts %}
+                        {% if part != '' and part != 'index.html' %}
+                            <a href="#!" class="breadcrumb">{{ part | remove: '.html' | capitalize }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
 
-            {% assign url_parts = page.url | split: '/' %}
             {% assign url_parts_size = url_parts | size %}
             {% assign subfolder_url_parts_size = url_parts_size | plus: 1 %}
             {% assign rm = url_parts | last %}
@@ -38,7 +47,7 @@
                     <div class="col s12 m8 push-m2 l6 xl4">
                         <div class="card small hoverable">
                             <div class="card-content">
-                                <span class="card-title">{{ subfolder_name | upcase }}</span>
+                                <span class="card-title">{{ subfolder_name | capitalize }}</span>
                                 <p>{{doc.description}}</p>
                             </div>
                             <div class="card-action">
@@ -61,7 +70,7 @@
                 <div class="col s12 m8 push-m2 l6 xl4">
                     <div class="card small hoverable">
                         <div class="card-content">
-                            <span class="card-title">{{ doc.title | upcase }}</span>
+                            <span class="card-title">{{ doc.title }}</span>
                             <p>{{doc.description}}</p>
                         </div>
                         <div class="card-action">
