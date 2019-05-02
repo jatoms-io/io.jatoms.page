@@ -49,3 +49,7 @@ blockquote{border-left:3px solid {{accentColor}};font-style:italic;font-weight:3
 
 /* Tables */
 table.striped>tbody>tr:nth-child(odd){background-color:{{secondaryBackgroundColor}};}
+
+/* TOC */
+.table-of-contents a.active {border-left:2px solid {{accentColor}}; color:{{primaryLightColor}};}
+.table-of-contents .second-level a {padding-left:40px; font-size:13px; color: {{primaryLightColor}};}
