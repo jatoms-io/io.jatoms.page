@@ -35,7 +35,7 @@
 
     <div class="secondary-background">
 		<div class="container">
-			<h4 class="center-align news-header"> News </h4>
+			<h4 class="center-align news-header"> Content Updates </h4>
 			<div class="row">
 
             {% assign news = '' | split: '' %}
@@ -90,18 +90,37 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/1.1.0/trianglify.min.js"></script>
     <script>
-    var something = document.getElementById('trianglify-content');
-    var dimensions = something.getClientRects()[0];
+    var heroheader = document.getElementById('trianglify-content');
+    var hhdimensions = heroheader.getClientRects()[0];
     var pattern = Trianglify({
-        width: dimensions.width,
-        height: dimensions.height,
+        width: hhdimensions.width,
+        height: hhdimensions.height,
         cell_size: {{ page.trianglify.cell_size | default: 100 }},
         variance: {{ page.trianglify.variance | default: 1 }},
         x_colors: ['{{primaryDarkColor}}', '{{primaryColor}}', '{{primaryLightColor}}']
-        //x_colors: ['{{primaryLightColor}}','{{primaryColor}}', '{{accentColor}}', '{{primaryColor}}','{{primaryLightColor}}']
     }).png();
     var pattern64 = pattern.substr(pattern.indexOf("base64") + 7);
-    something.style.backgroundImage = 'url(data:image/png;base64,' + pattern64;
+    heroheader.style.backgroundImage = 'url(data:image/png;base64,' + pattern64;
+
+    // do the same for the mobile Navigation
+    var mobile = document.getElementById('trianglify-content-mobile');
+    var mdimensions = mobile.getClientRects()[0];
+    var pattern = Trianglify({
+        width: mdimensions.width,
+        height: mdimensions.height,
+        cell_size: {{ page.trianglify.cell_size | default: 100 }},
+        variance: {{ page.trianglify.variance | default: 1 }},
+        x_colors: ['{{primaryDarkColor}}', '{{primaryColor}}', '{{primaryLightColor}}']
+    }).png();
+    var pattern64 = pattern.substr(pattern.indexOf("base64") + 7);
+    mobile.style.backgroundImage = 'url(data:image/png;base64,' + pattern64;
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems);
+        });
     </script>
 
   </body>
