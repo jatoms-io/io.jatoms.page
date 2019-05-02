@@ -1,5 +1,5 @@
 /* News */
-.news-header{margin-top:0px;margin-bottom:0px;padding-top:34px;padding-bottom:20px;text-align:center;font-weight:300;color:{{primaryLightColor}};}
+.news-header{margin-top:0px;margin-bottom:0px;padding-top:20px;padding-bottom:20px;text-align:center;font-weight:300;color:{{primaryLightColor}};}
 .newsitem-header{margin-bottom:14px;margin-top:14px;font-size:1.3rem;color:{{primaryColor}};font-weight:350;}
 .newsitem-header-row{margin-bottom:0px;}
 .newsitem-content{text-align:justify;}

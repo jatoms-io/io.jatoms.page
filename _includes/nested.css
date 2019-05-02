@@ -6,8 +6,10 @@
 .card.small{height: 225px;}
 
 /* Breadcrumbs */
+.breadcrumb{font-size:20px;}
 nav{background-color: {{inverseTextColor}};}
 a.breadcrumb{color: {{primaryLightColor}};}
 .breadcrumb:last-child{color:{{accentColor}};}
-.breadcrumb:before{color:{{primaryLightColor}};font-size:15px;}
+.breadcrumb:before{color:{{primaryLightColor}};font-size:20px;margin-top:2px;}
 nav.breadcrumbs{box-shadow:none;margin-top:4px;}
+.breadcrumb-container{margin-top:15px;margin-bottom:10px;}

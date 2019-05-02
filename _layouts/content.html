@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {%- include head.html -%}
+
+  {%- capture style -%} {%- include base.css -%} {%- include nested.css -%} {%- include content.css -%} {%- endcapture -%}
+
+  <style>
+	{{- style | strip_newlines -}}
+  </style>
+
+  <body>
+	<!-- Navigation Header -->
+	{% include header.html %}
+  <main>
+  <div class="container">
+        {% assign url_parts = page.url | split: '/' %}
+        <div class="row breadcrumb-container">
+            <div class="nav-wrapper">
+                <div class="col s12">
+                    {% assign path = ''%}
+                    {% for part in url_parts %}
+                        {% if part != '' and part != 'index.html' %}
+                            {% assign path = path | append: '/' | append: part %}
+                            <a href="{{path}}" class="breadcrumb">{{ part | remove: '.html' | capitalize }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div id="text-content" class="section col s12 l10">
+				{{content}}
+		    </div>
+			<div class="col hide-on-med-and-down l2">
+				<div id="toc-wrapper" class="toc-wrapper pin-top">
+				  <ul id="toc" class="section table-of-contents">
+
+				  </ul>
+				</div>
+			</div>
+        </div>
+
+  </div>
+  </main>
+	{% include footer.html %}
+  </body>
+</html>

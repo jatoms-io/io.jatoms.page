@@ -3,7 +3,7 @@
 
   {%- include head.html -%}
 
-  {%- capture style -%} {%- include base.css -%} {%- include nested.css -%} {%- include content.css -%} {%- endcapture -%}
+  {%- capture style -%} {%- include base.css -%} {%- include nested.css -%}  {%- endcapture -%}
 
   <style>
 	{{- style | strip_newlines -}}
@@ -15,17 +15,20 @@
   <main>
   <div class="container">
         {% assign url_parts = page.url | split: '/' %}
-		<div class="row">
+        <div class="row breadcrumb-container">
             <div class="nav-wrapper">
                 <div class="col s12">
+                    {% assign path = ''%}
                     {% for part in url_parts %}
                         {% if part != '' and part != 'index.html' %}
-                            <a href="#!" class="breadcrumb">{{ part | remove: '.html' | capitalize }}</a>
+                            {% assign path = path | append: '/' | append: part %}
+                            <a href="{{path}}" class="breadcrumb">{{ part | remove: '.html' | capitalize }}</a>
                         {% endif %}
                     {% endfor %}
                 </div>
             </div>
-
+        </div>
+		<div class="row">
             {% assign url_parts_size = url_parts | size %}
             {% assign subfolder_url_parts_size = url_parts_size | plus: 1 %}
             {% assign rm = url_parts | last %}
