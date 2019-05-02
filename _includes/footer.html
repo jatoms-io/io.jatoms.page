@@ -1,15 +1,25 @@
 <footer class="page-footer">
     <div class="footer-copyright">
         <div class="container">
-            <div>
-                Made with <a target="_blank" href="http://materializecss.com">Materialize</a>
-                <span style="text-align: center">
+            <div class="row">
+                <div class="col s4 left-align">
+                Made with <a href="http://materializecss.com">Materialize</a>
+                </div>
+                <div class="col s4 center-align">
                 Copyright © 2019 <a href="{{site.contact_page}}">{{site.author}}</a>
-                </span>
-                <span style="text-align: right; float: right">
+                </div>
+                <div class="col s4 right-align">
                 Powered by <a target="_blank" href="http://jekyllrb.com/">Jekyll</a>
-                </span>
+                </div>
             </div>
         </div>
     </div>
 </footer>
+
+<!-- Code used to initiate the Navbar for mobile devices -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.sidenav');
+        var instances = M.Sidenav.init(elems);
+    });
+</script>
