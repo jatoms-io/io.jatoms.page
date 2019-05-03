@@ -30,7 +30,7 @@
 .highlight .s1 { color: {{primaryLightColor}} } /* Literal.String.Single */
 .highlight .ss { color: {{primaryLightColor}} } /* Literal.String.Symbol */
 .highlight {tab-size: 4;}
-div.highlighter-rouge{padding:9px 14px;background:{{secondaryBackgroundColor}};border:1px solid {{dividerColor}};border-radius:4px; margin-bottom: 10px;}
+div.highlighter-rouge{padding:9px 14px;background:{{secondaryBackgroundColor}};border:1px solid {{dividerColor}};border-radius:4px; margin-bottom: 10px; overflow-x:scroll;}
 code.highlighter-rouge{padding:0px 3px;background:{{secondaryBackgroundColor}};border:1px solid {{dividerColor}};border-radius:3px;}
 
 /* Make headers a little bit smaller */
