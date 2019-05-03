@@ -49,27 +49,27 @@
             {% endfor %}
 
             {% assign news = news | sort: "published_at" | reverse %}
-            {% for new in news limit: 5 %}
+            {% for newsitem in news limit: 5 %}
                 <div class="col s12 m4 l3 hide-on-small-only">
                     <div class="row newsitem-header-row">
                         <div class="col push-m3">
                             <div class="newsitem-date-card center-align">
                                 <div class="newsitem-date-card-header">
-                                    <p class="newsitem-day-of-week">{{ new.published_at | date: "%A" }}</p>
+                                    <p class="newsitem-day-of-week">{{ newsitem.published_at | date: "%A" }}</p>                             </p>
                                 </div>
                             <div>
-                                <p class="newsitem-month">{{ new.published_at | date: "%b" }}</p>
-                                <p class="newsitem-day-number">{{ new.published_at | date: "%d" }}</p>
-                                <p class="newsitem-year">{{ new.published_at | date: "%Y" }}</p>
+                                <p class="newsitem-month">{{ newsitem.published_at | date: "%b" }}</p>
+                                <p class="newsitem-day-number">{{ newsitem.published_at | date: "%d" }}</p>
+                                <p class="newsitem-year">{{ newsitem.published_at | date: "%Y" }}</p>
                             </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col s12 m7 l8 light newsitem-content">
-                    <h6 class="newsitem-header">{{new.title}}</h6>
-                    <p class="newsitem-date hide-on-med-and-up">{{ new.published_at | date: "%B %d, %Y" }}<p>
-                    {{new.description}}
+                    <h6 class="newsitem-header"><a href="{{newsitem.url}}">{{newsitem.title}}</a></h6>
+                    <p class="newsitem-date hide-on-med-and-up">{{ newsitem.published_at | date: "%B %d, %Y" }}<p>
+                    {{newsitem.description}}
                 </div>
                 <div class="col s12">
                     <div class="row newsitem-divider-row">
