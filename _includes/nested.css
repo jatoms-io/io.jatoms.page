@@ -1,8 +1,6 @@
 /* Cards */
 .card-title{color: {{primaryTextColor}};}
 .card-content{color: {{secondaryTextColor}};}
-.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating){color: {{primaryColor}};}
-.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating):hover{color: {{accentColor}};}
 .card.small{height: 225px;}
 
 /* Breadcrumbs */

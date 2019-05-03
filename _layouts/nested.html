@@ -48,15 +48,14 @@
                     {% assign subfolder_name = subfolder_base_url_parts | last %}
                     <!--create a card for subfolder -->
                     <div class="col s12 m8 push-m2 l6 xl4">
-                        <div class="card small hoverable">
-                            <div class="card-content">
-                                <span class="card-title">{{ subfolder_name | capitalize }}</span>
-                                <p>{{doc.description}}</p>
+                        <a href="{{subfolder_base_url}}">
+                            <div class="card small hoverable">
+                                <div class="card-content">
+                                    <span class="card-title">{{ subfolder_name | capitalize }}</span>
+                                    <p>{{doc.description}}</p>
+                                </div>
                             </div>
-                            <div class="card-action">
-                                <a class="card-action-link" href="{{subfolder_base_url}}">Go to {{subfolder_name}}</a>
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 {% endif %}
             {% endfor %}
@@ -71,15 +70,14 @@
                 {% if url_parts_size == doc_url_parts_size and filename != 'index.html' %}
                 <!--create a card for file -->
                 <div class="col s12 m8 push-m2 l6 xl4">
-                    <div class="card small hoverable">
-                        <div class="card-content">
-                            <span class="card-title">{{ doc.title }}</span>
-                            <p>{{doc.description}}</p>
+                    <a href="{{doc.url}}">
+                        <div class="card small hoverable">
+                            <div class="card-content">
+                                <span class="card-title">{{ doc.title }}</span>
+                                <p>{{doc.description}}</p>
+                            </div>
                         </div>
-                        <div class="card-action">
-                            <a class="card-action-link" href="{{doc.url}}">Go to {{doc.title}}</a>
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 {% endif %}
             {% endfor %}
