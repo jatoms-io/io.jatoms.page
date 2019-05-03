@@ -30,7 +30,6 @@ github_button:
 twitter_button:
   user: SanfteSchorle
 
-# any of these collections is used for nested pages
 collections:
   landingpage:
     output: true
@@ -38,3 +37,6 @@ collections:
     output: true
     news_relevant: true
     navbar_title: Resources
+  gitter:
+    output: true
+    navbar_title: Chat
