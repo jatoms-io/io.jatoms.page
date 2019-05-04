@@ -66,11 +66,13 @@
                         </div>
                     </div>
                 </div>
+                <a href="{{newsitem.url}}">
                 <div class="col s12 m7 l8 light newsitem-content">
-                    <h6 class="newsitem-header"><a href="{{newsitem.url}}">{{newsitem.title}}</a></h6>
+                    <h6 class="newsitem-header">{{newsitem.title}}</h6>
                     <p class="newsitem-date hide-on-med-and-up">{{ newsitem.published_at | date: "%B %d, %Y" }}<p>
                     {{newsitem.description}}
                 </div>
+                </a>
                 <div class="col s12">
                     <div class="row newsitem-divider-row">
                         <div class="col s10 push-s1 m8 push-m2">
