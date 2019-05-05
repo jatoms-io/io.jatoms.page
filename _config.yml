@@ -1,4 +1,4 @@
-author: Thomas Driessen
+author: jatoms.io
 title: JATOMS
 description: Atomic Building Blocks for OSGi
 contact_page: https://twitter.com/NewsOsgi
@@ -52,4 +52,6 @@ collections:
   contribute:
     output: true
     navbar_title: Contribute
+    news_relevant: true
+    news_icon: people
     order: 40
