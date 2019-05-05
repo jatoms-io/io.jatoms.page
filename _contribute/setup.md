@@ -1,8 +1,7 @@
 ---
 layout: content
-title: Mein Test
-description: Meine etwas längere Beschreibung
-published_at: 01-02-1987
+title: Conventions and Workflow
+description: If you want to contribute, then read these conventions first and have a look at the workflow
 ---
 
 # Content
@@ -64,8 +63,6 @@ Headers of the level H1/H2 can be seen in the text
 - Or minuses
 + Or pluses
 ```
-
-Just a small test
 
 1. First ordered list item
 2. Another item

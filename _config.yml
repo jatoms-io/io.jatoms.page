@@ -33,10 +33,21 @@ twitter_button:
 collections:
   landingpage:
     output: true
-  resources:
+  jatoms:
     output: true
     news_relevant: true
-    navbar_title: Resources
+    navbar_title: jatoms
+    order: 10
+  blog:
+    output: true
+    news_relevant: true
+    navbar_title: Blog
+    order: 20
   gitter:
     output: true
     navbar_title: Chat
+    order: 30
+  contribute:
+    output: true
+    navbar_title: Contribute
+    order: 40

@@ -45,7 +45,7 @@
                 {% if subfolder_url_parts_size == doc_url_parts_size and subfoldername == 'index.html' %}
                     {% assign subfolder_base_url = doc.url | replace: subfoldername %}
                     {% assign subfolder_base_url_parts = subfolder_base_url | split: '/' %}
-                    {% assign subfolder_name = subfolder_base_url_parts | last %}
+                    {% assign subfolder_name = subfolder_base_url_parts | last | url_decode %}
                     <!--create a card for subfolder -->
                     <div class="col s12 m8 push-m2 l6 xl4">
                         <a href="{{subfolder_base_url}}">
@@ -65,7 +65,7 @@
 
                 {% assign doc_url_parts = doc.url | split: '/' %}
                 {% assign doc_url_parts_size = doc_url_parts | size %}
-                {% assign filename = doc_url_parts | last %}
+                {% assign filename = doc_url_parts | last | url_decode  %}
 
                 {% if url_parts_size == doc_url_parts_size and filename != 'index.html' %}
                 <!--create a card for file -->
@@ -73,7 +73,7 @@
                     <a href="{{doc.url}}">
                         <div class="card small hoverable">
                             <div class="card-content">
-                                <span class="card-title">{{ doc.title }}</span>
+                                <span class="card-title">{{ filename | capitalize | remove: '.html' }}</span>
                                 <p>{{doc.description}}</p>
                             </div>
                         </div>

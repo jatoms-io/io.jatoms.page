@@ -21,11 +21,8 @@
                     {% assign path = ''%}
                     {% for part in url_parts %}
                         {% if part != '' and part != 'index.html' %}
-                            {% if part contains '.html' and page.title %}
-                                <a href="{{path}}" class="breadcrumb">{{ page.title }}</a>
-                            {% else %}
-                                <a href="{{path}}" class="breadcrumb">{{ part | remove: '.html' | capitalize }}</a>
-                            {% endif %}
+                            {% assign path = path | append: '/' | append: part %}
+                            <a href="{{path}}" class="breadcrumb">{{ part | remove: '.html' | capitalize }}</a>
                         {% endif %}
                     {% endfor %}
                 </div>

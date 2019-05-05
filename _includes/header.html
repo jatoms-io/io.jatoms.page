@@ -1,10 +1,9 @@
 <nav class="white lighten-1" role="navigation">
 	<div class="nav-wrapper container">
-		<a id="logo-container" class="brand-logo" href="/"><img src="/{{site.logo }}" class="logo"><span class="hide-on-med-and-down">{{site.title}}</span></a>
-	    {% assign navbaritems = site.collections | where_exp: "item", "item.navbar_title" %}
+		<a id="logo-container" class="brand-logo" href="/"><img src="/{{site.logo }}" class="logo"></a>
+	    {% assign navbaritems = site.collections | where_exp: "item", "item.navbar_title" | sort: 'order' %}
 
 	  <ul class="right hide-on-med-and-down">
-		<li><a href="/">Home </a></li>
 		{% for navbaritem in navbaritems %}
 			<li><a href="/{{navbaritem.label}}/index.html">{{navbaritem.navbar_title}}</a></li>
 		{% endfor %}
@@ -45,7 +44,6 @@
                 <a><span class="white-text email">{{site.description}}</span></a>
             </div>
         </li>
-		<li><a href="/">Home</a></li>
 		<li class="divider"></li>
 		{% for navbaritem in navbaritems %}
 			<li><a href="/{{navbaritem.label}}/index.html">{{navbaritem.navbar_title}}</a></li>
