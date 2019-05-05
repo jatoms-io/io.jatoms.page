@@ -36,7 +36,7 @@ collections:
   jatoms:
     output: true
     news_relevant: true
-    navbar_title: jatoms
+    navbar_title: Jatoms
     order: 10
   blog:
     output: true

@@ -22,7 +22,11 @@
                     {% for part in url_parts %}
                         {% if part != '' and part != 'index.html' %}
                             {% assign path = path | append: '/' | append: part %}
-                            <a href="{{path}}" class="breadcrumb">{{ part | remove: '.html' | capitalize }}</a>
+                            {% if url_parts[1] contains part %}
+                                <a href="{{path}}" class="breadcrumb">{{ part | remove: '.html' | url_decode | capitalize }}</a>
+                            {% else %}
+                                <a href="{{path}}" class="breadcrumb">{{ part | remove: '.html' | url_decode }}</a>
+                            {% endif %}
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -34,9 +38,7 @@
 		    </div>
 			<div class="col hide-on-med-and-down l2">
 				<div id="toc-wrapper" class="toc-wrapper pin-top">
-				  <ul id="toc" class="section table-of-contents">
-
-				  </ul>
+				  <ul id="toc" class="section table-of-contents"></ul>
 				</div>
 			</div>
         </div>
