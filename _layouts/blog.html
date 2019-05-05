@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {%- include head.html -%}
+
+  {%- capture style -%} {%- include base.css -%} {%- include blog.css -%} {%- endcapture -%}
+
+  <style>
+	{{- style | strip_newlines -}}
+  </style>
+
+  <body>
+	<!-- Navigation Header -->
+	{% include header.html %}
+  <main>
+  <div class="container">
+    <div class="row">
+        {% assign collection = site.collections | where_exp: "item" , "item.label == page.collection" | first %}
+        {% assign docs = collection.docs | sort: "published_at" %}
+        {% for post in collection.docs %}
+            {% unless post.url contains 'index.html' %}
+            <div class="col s12 m8 push-m2 l6 xl4">
+                <a class="post-card" href="{{post.url}}">
+                    <div class="card medium hoverable">
+                        <div class="card-image">
+                            {% if post.image %}
+                                <img src="{{post.image}}">
+                            {% else %}
+                                {% assign min = 1 %}
+                                {% assign max = 100 %}
+                                {% assign diff = max | minus: min %}
+                                {% assign randomNumber = "now" | date: "%N" | modulo: diff | plus: min %}
+                                <img src="https://picsum.photos/id/{{randomNumber}}/410/255?grayscale">
+                            {% endif %}
+                        </div>
+                        <div class="card-content">
+                            <div class="row valign-wrapper">
+                                {% if post.author %}
+                                    <div class="col s2">
+                                        <img src="https://avatars3.githubusercontent.com/{{post.author}}?v=3&amp;s=35" class="circle">
+                                    </div>
+                                    <div class="col s10">
+                                        <span class="post-title">{{post.title}}</span>
+                                    </div>
+                                {% else %}
+                                    <div class="col s12">
+                                        <span class="post-title">{{post.title}}</span>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <p class="post-date">{{post.published_at | date: "%B %d, %Y" }}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endunless %}
+        {% endfor %}
+    </div>
+  </div>
+  </main>
+	{% include footer.html %}
+  </body>
+  <script src="/assets/js/content.js"></script>
+</html>
