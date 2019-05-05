@@ -1,0 +1,13 @@
+<script>
+    var heroheader = document.getElementById('trianglify-content');
+    var hhdimensions = heroheader.getClientRects()[0];
+    var pattern = Trianglify({
+        width: hhdimensions.width,
+        height: hhdimensions.height,
+        cell_size: {{ page.trianglify.cell_size | default: 100 }},
+        variance: {{ page.trianglify.variance | default: 1 }},
+        x_colors: ['{{primaryDarkColor}}', '{{primaryColor}}', '{{primaryLightColor}}']
+    }).png();
+    var pattern64 = pattern.substr(pattern.indexOf("base64") + 7);
+    heroheader.style.backgroundImage = 'url(data:image/png;base64,' + pattern64;
+</script>

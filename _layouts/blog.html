@@ -48,7 +48,7 @@
                                     </div>
                                 {% endif %}
                             </div>
-                            
+
                             <p class="post-date">{{post.published_at | date: "%B %d, %Y" }}</p>
                         </div>
                     </div>
@@ -62,4 +62,6 @@
 	{% include footer.html %}
   </body>
   <script src="/assets/js/content.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/1.1.0/trianglify.min.js"></script>
+    {% include trianglify-mobile.html %}
 </html>
