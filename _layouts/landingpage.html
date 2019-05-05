@@ -33,57 +33,38 @@
 	  </div>
 	</div>
 
-    <div class="secondary-background">
+
+   <div class="secondary-background">
 		<div class="container">
 			<h4 class="center-align news-header"> Content Updates </h4>
-			<div class="row">
+             <div class="timeline">
+                {% assign news = '' | split: '' %}
+                {% for collection in site.collections %}
+                    {% if collection.news_relevant %}
+                        {% assign items = collection.docs | where_exp:"doc", "doc.published_at" %}
+                        {% assign items = items | where_exp:"item", "item.description" %}
+                        {% assign items = items | where_exp:"item", "item.title" %}
+                        {% assign news = news | concat: items %}
+                    {% endif %}
+                {% endfor %}
 
-            {% assign news = '' | split: '' %}
-            {% for collection in site.collections %}
-                {% if collection.news_relevant %}
-                    {% assign items = collection.docs | where_exp:"doc", "doc.published_at" %}
-                    {% assign items = items | where_exp:"item", "item.description" %}
-                    {% assign items = items | where_exp:"item", "item.title" %}
-                    {% assign news = news | concat: items %}
-                {% endif %}
-            {% endfor %}
+                {% assign news = news | sort: "published_at" | reverse %}
+                {% for newsitem in news limit: 5 %}
 
-            {% assign news = news | sort: "published_at" | reverse %}
-            {% for newsitem in news limit: 5 %}
-                <div class="col s12 m4 l3 hide-on-small-only">
-                    <div class="row newsitem-header-row">
-                        <div class="col push-m3">
-                            <div class="newsitem-date-card center-align">
-                                <div class="newsitem-date-card-header">
-                                    <p class="newsitem-day-of-week">{{ newsitem.published_at | date: "%A" }}</p>                             </p>
-                                </div>
-                            <div>
-                                <p class="newsitem-month">{{ newsitem.published_at | date: "%b" }}</p>
-                                <p class="newsitem-day-number">{{ newsitem.published_at | date: "%d" }}</p>
-                                <p class="newsitem-year">{{ newsitem.published_at | date: "%Y" }}</p>
-                            </div>
+                    {% assign newsitemcollection = site.collections | where_exp: "item" , "item.label == newsitem.collection" | first %}
+                 <div class="timeline-event">
+                    <a class="newsitem" href="{{newsitem.url}}">
+                        <div class="card timeline-content hoverable">
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4">{{newsitem.title}}</span>
+                                <p class="newsitem-date">{{ newsitem.published_at | date: "%B %d, %Y" }}</p>
+                                <p>{{newsitem.description}}</p>
                             </div>
                         </div>
-                    </div>
+                    </a>
+                    <div class="timeline-badge white-text"><i class="material-icons">{{newsitemcollection.news_icon}}</i></div>
                 </div>
-                <a href="{{newsitem.url}}">
-                <div class="col s12 m7 l8 light newsitem-content">
-                    <h6 class="newsitem-header">{{newsitem.title}}</h6>
-                    <p class="newsitem-date hide-on-med-and-up">{{ newsitem.published_at | date: "%B %d, %Y" }}<p>
-                    {{newsitem.description}}
-                </div>
-                </a>
-                <div class="col s12">
-                    <div class="row newsitem-divider-row">
-                        <div class="col s10 push-s1 m8 push-m2">
-                            <div class="divider"></div>
-                        </div>
-                    </div>
-                </div>
-
-            {% endfor %}
-
-			</div>
+                {% endfor %}
 		</div>
 	</div>
   </main>
