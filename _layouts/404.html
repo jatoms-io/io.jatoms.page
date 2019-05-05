@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {%- include head.html -%}
+
+  {%- capture style -%} {%- include base.css -%} {%- endcapture -%}
+
+  <style>
+	{{- style | strip_newlines -}}
+  </style>
+
+  <body>
+	<!-- Navigation Header -->
+	{% include header.html %}
+  <main>
+  <div class="container center-align">
+      <h1> The page you are searching for seems not to be here (anymore) :(</h1>
+      <h4>Go back to <a href="/">the landing page</a></h4>
+  </div>
+  </main>
+	{% include footer.html %}
+  </body>
+</html>
