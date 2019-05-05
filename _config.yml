@@ -1,6 +1,6 @@
 author: Thomas Driessen
 title: JATOMS
-description: Atomic Building Blocks for OSGi Applications
+description: Atomic Building Blocks for OSGi
 contact_page: https://twitter.com/SanfteSchorle
 
 # language to use in html tag, can be overriden by page.lang
@@ -28,7 +28,7 @@ github_button:
 
 # Twitter data, if present there will be a Twitter button in the navbar
 twitter_button:
-  user: SanfteSchorle
+  user: NewsOsgi
 
 collections:
   landingpage:

@@ -1,6 +1,8 @@
 ---
 layout: peptalk
 icon: apps
-title: jatoms
+title: Jatoms
 ---
-A collection of small, online executable examples (thanks to [Gitpod](https://gitpod.io)), as well as short "How to..." and  "What is..." explanations of the most important OSGi topics, to get you started quickly with the technology you need for your next OSGi application.
+Get started quickly with the technology you love!
+
+Jatoms is an ever growing collection of online executable examples on how to use the most common APIs, frameworks and libraries in an OSGi environment.
