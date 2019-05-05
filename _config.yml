@@ -36,11 +36,13 @@ collections:
   jatoms:
     output: true
     news_relevant: true
+    news_icon: apps
     navbar_title: Jatoms
     order: 10
   blog:
     output: true
     news_relevant: true
+    news_icon: chat
     navbar_title: Blog
     order: 20
   gitter:
