@@ -46,7 +46,7 @@ If you have read some books about software patterns, then you even might add som
 At the end of the day you will then end up with a more or less well-structured code base that eventually runs on the JVM. 
 The following picture thus shall be an abstract view of your application until now:
 
-(TODO: image)
+![java-application](images/java-application.png)
 
 This looks ok, doesn't it? Well kind of. 
 
@@ -82,7 +82,7 @@ This way OSGi provides you with a way to **really** hide your impementations fro
 This can even be taken a step further. Aside from hiding your implementation you now can explicitly state what packages shall serve as an API for the rest of the classes hiding in your bundle, by declaring the API packages as public. 
 Isnt' that great? Look at the picture below to see how awesome this is:
 
-(TODO: image)
+![bundled-application](images/bundled-application.png)
 
 Now nobody but you can access and instantiate the implementation classes that you want to hide behind your super fancy API interfaces. 
 You and you alone are the one who decides which implementation is used internally. 
@@ -121,7 +121,14 @@ By using this pattern of hiding implementations, publishing well-designed interf
 * You **encapsulate** the code that belongs to one functionality within one bundle
 * You **hide the implementation** behind a well defined interface
 * A Consumer **is forced to use the API** instead of unintentionally using an implementation
-* The bundle that encapsulates a specific functionality is responsible for instantiating it, instead of a consumer, a factory or an all-knowing dependency injection framework.
+* Classes within your bundles usually have **high cohesion** and between bundles there is **low coupling**
+
+What we now finally ended up with is probably looking something like this:
+
+![osgi-application](images/osgi-application.png)
+
+A application where each bundle has a private and public section that contain classes and interfaces as well as services that are registered by one bundle and used by another bundle.
+What a beautyful, modular application *sigh* :)
 
 
 ## Conclusion
