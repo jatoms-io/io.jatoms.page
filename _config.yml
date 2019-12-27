@@ -33,11 +33,11 @@ twitter_button:
 collections:
   landingpage:
     output: true
-  jatoms:
+  resources:
     output: true
     news_relevant: true
     news_icon: apps
-    navbar_title: Jatoms
+    navbar_title: Resources
     order: 10
   blog:
     output: true

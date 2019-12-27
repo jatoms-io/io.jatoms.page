@@ -11,6 +11,7 @@ Provide one single source for:
 * Theory lesson1 -> (optional example)
 * Theory lesson2 -> (optional example)
 
+* Theory lessons and examples are probably decoupled, as the examples should be a continous series of tutorials that explain OSGi and are build on one another
 * Text should be in markdown and drawings (if possible) being made with draw.io, so that the drawings can be versioned and easily altered in the future
 * Theory lessons live within the jatoms.io site, examples in the examples repository, each example in its own branch
 * Examples have to be editable in GitPod and should ideally contain proper gitpod configuration and a matching docker image file
