@@ -46,7 +46,10 @@
                 {% assign doc_url_parts_size = doc_url_parts | size %}
                 {% assign subfoldername = doc_url_parts | last %}
 
-                {% if subfolder_url_parts_size == doc_url_parts_size and subfoldername == 'index.html' %}
+                <!-- We assume the colelciton is organized as a nested folder structure, i.e. a tree
+                and there is only one index file allowed per subfolder, so its ok to just check for 
+                url_parts_size isntead of comparing for same url prefixes  -->
+                {% if subfoldername == 'index.html' and subfolder_url_parts_size == doc_url_parts_size %}
                     {% assign subfolder_base_url = doc.url | replace: subfoldername %}
                     {% assign subfolder_base_url_parts = subfolder_base_url | split: '/' %}
                     {% assign subfolder_name = subfolder_base_url_parts | last | url_decode %}
@@ -70,8 +73,10 @@
                 {% assign doc_url_parts = doc.url | split: '/' %}
                 {% assign doc_url_parts_size = doc_url_parts | size %}
                 {% assign filename = doc_url_parts | last | url_decode  %}
+                {% assign doc_rm = doc_url_parts | last %}
+                {% assign doc_base_url = doc.url | replace: doc_rm %}
 
-                {% if url_parts_size == doc_url_parts_size and filename != 'index.html' %}
+                {% if url_parts_size == doc_url_parts_size and filename != 'index.html' and doc_base_url == base_url %}
                 <!--create a card for file -->
                 <div class="col s12 m8 push-m2 l6 xl4">
                     <a href="{{doc.url}}">
