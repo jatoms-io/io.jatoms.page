@@ -1,5 +1,7 @@
 # JATOMS
 
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/jatoms-io/io.jatoms.page)
+
 ## Goal 
 Provide one single source for:
 * Theory and practical guidance on what OSGi is, why it exists and how to use it properly
@@ -26,4 +28,4 @@ Provide one single source for:
 
 * (TODO: Github artifact repository)
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/jatoms-io/io.jatoms.page)
+
