@@ -1,3 +1,11 @@
+---
+layout: content
+author: jatoms-io
+title: Roadmap
+description: The planned outline of tutorials that should be created for this site
+published_at: 27-12-2019
+
+---
 # Roadmap
 
 ## Content
