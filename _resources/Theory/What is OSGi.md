@@ -4,7 +4,6 @@ author: jatoms-io
 title: What is OSGi?
 description: A short explanation of what OSGi is from a Java developer's point of view.
 published_at: 12-05-2019
-
 ---
 
 # What is OSGi?
