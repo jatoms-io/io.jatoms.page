@@ -53,3 +53,6 @@ table.striped>tbody>tr:nth-child(odd){background-color:{{secondaryBackgroundColo
 /* TOC */
 .table-of-contents a.active {border-left:2px solid {{accentColor}}; color:{{primaryLightColor}};}
 .table-of-contents .second-level a {padding-left:40px; font-size:13px; color: {{primaryLightColor}};}
+
+/* Make images responsive */
+img{max-width: 100%;height: auto;}
