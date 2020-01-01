@@ -20,22 +20,11 @@ When to use OSGi?
 * When you need to update your application within one JVM at runtime without downtime 
 * When you need to load/unload code at runtime 
 * (Modularity, this doesn't sell good enough, as the problems OSGi solves are often only met later on in large projects)
+* Others?
 
 From basic Java to OSGi
-* Starting with an empty workspace (Gitpod should have all necessary tools set up, snippets unfortunately not working yet)
-* Use Maven archetype to create a simple plain Java Hello World Application
-* demonstrate everything works fine
-* show manifest file
-* add bnd-maven plugin to project 
-* show manifest file again
-* show that the plain java application still works 
-* add necessary bnd-maven plugins to project to create a runnable osgi "fat jar"
-* now start OSGi framework with this bundle installed and that this still "works" (no error message, but also no ouput, as the main method will not be invoked)
-* explain what OSGi is (Part 1), 
-    * framework on top of JVM
-    * wants Jars with proper manifests and calls them bundles 
-* show what manifest entries are necessary to work within OSGi and show that our bundle has those entries 
-
+ -> Lesson 01
+ 
 Bundles in OSGi
 * Back to the "not working" main method: explain what BundleActivators are and how they correlate to the Bundle Lifecycle
 * Implement the Hello world in the acitvate method of a bundle activator 
