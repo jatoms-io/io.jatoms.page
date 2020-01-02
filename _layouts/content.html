@@ -24,9 +24,9 @@
                         {% if part != '' and part != 'index.html' %}
                             {% assign path = path | append: '/' | append: part %}
                             {% if url_parts[1] contains part %}
-                                <a href="{{path}}" class="breadcrumb">{{ part | remove: '.html' | url_decode | capitalize }}</a>
+                                <a href="{{path}}" class="breadcrumb">{{ part | remove: '.html' | url_decode | capitalize | replace: "_", " " }}</a>
                             {% else %}
-                                <a href="{{path}}" class="breadcrumb">{{ part | remove: '.html' | url_decode }}</a>
+                                <a href="{{path}}" class="breadcrumb">{{ part | remove: '.html' | url_decode | replace: "_", " "}}</a>
                             {% endif %}
                         {% endif %}
                     {% endfor %}
@@ -36,7 +36,7 @@
         <div class="row">
             <div id="text-content" class="section col s12 l10">
                 <!-- Get name of the file as title -->
-                {% assign content_title = url_parts | last | url_decode | remove: ".html" %}
+                {% assign content_title = url_parts | last | url_decode | remove: ".html" | replace: "_", " " %}
                 {% assign lower_content_title = content_title | downcase %}
                 <h1 id="{{lower_content_title}}">{{ content_title }}</h1>
                 <div class="divider"></div> 

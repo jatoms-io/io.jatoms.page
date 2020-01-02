@@ -1,30 +1,12 @@
 ---
 layout: content
-description: How content is displayed in this template (the markdown cheatsheet)
+description: How content is displayed in a page with content layout (the markdown cheatsheet)
 author: jatoms-io
-published_at: 05-05-2019
+published_at: 02-01-2020
 order: 10
 ---
 
-Front matter to use for a content page:
-
-```
----
-layout: content
-title: Content Layout
-description: How content is displayed in this template (the markdown cheatsheet)
-author: jatoms-io
-published_at: 05-05-2019
----
-```
-
-* **layout**: the layout is *content* in order to get nice highlighting of code fragments and a table of contents on the right side.
-* **title**: is only used for automatic "Content Updates" generation on the landing page. If the collection of this content page is not **news_relevant** then this can be ommitted.
-* **description**: is used for the navigation cards in a nested structure and also for "Content Updates" on the landingpage.
-* **author**: your GitHub user name, which is taken for a nice profile pic in the navigation cards .
-* **published_at**: is used for ordering "Content Updates" on the landing page or if it is a blog post for sorting all blog posts.
-
-The content below is taken from Adam Pritchard's [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
+The content below is mostly taken from Adam Pritchard's [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
 
 ## Text
 
@@ -131,16 +113,39 @@ Some text to show that the reference links can follow later.
 [1]: http://slashdot.org
 [link text itself]: http://www.reddit.com
 
+## In-Page Links
+```
+In-Page links are alway relative to the position where you currently are.
+
+We are currently in the folder `Layouts_and_Markdown`, so all we have to do to link to this page is to write the path from the folder to the file, which is just the file's name without the .md ending
+
+[Link to this page](Markdown Cheatsheet)
+
+In order to navigate to another folder we can use the .. syntax which navigates one folder up and then type the path to the page we want.
+
+[Link to "How to add a tutorial"](../How_Tos/How to add a Tutorial)
+```
+In-Page links are alway relative to the position where you currently are.
+
+We are currently in the folder `Layouts_and_Markdown`, so all we have to do to link to this page is to write the path from the folder to the file, which is just the file's name without the .md ending
+
+[Link to this page](Markdown Cheatsheet)
+
+In order to navigate to another folder we can use the .. syntax which navigates one folder up and then type the path to the page we want.
+
+[Link to "How to add a tutorial"](../How_Tos/How to add a Tutorial)
+
+
 ## Images
 
 ```
 Here's our logo (hover to see the title text):
 
 Inline-style:
-![alt text](https://raw.githubusercontent.com/Sandared/documentation_template/gh-pages/logo.png "Logo Title Text 1")
+![Some text to be displayed if the image is not found](https://raw.githubusercontent.com/Sandared/documentation_template/gh-pages/logo.png "Logo Title Text 1")
 
 Reference-style:
-![alt text][logo]
+![Some text to be displayed if the image is not found][logo]
 
 [logo]: https://raw.githubusercontent.com/Sandared/documentation_template/gh-pages/logo.png "Logo Title Text 2"
 ```
