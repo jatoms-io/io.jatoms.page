@@ -12,32 +12,50 @@ Second: We tried to make the process of contributing dead easy. The more difficu
 Therefore, the majority of this page is dedicated to best practices we would like you to follow in order to create a well structured tutorial. 
 But first things first.
 
+If there is any problem that prevents you from getting started as described below, then don't hesitate to [open an issue](https://github.com/jatoms-io/io.jatoms.page/issues) :)
+
 ## Setup
-First you need a GitHub account, then you go to the [GitHub repository of this site](https://github.com/jatoms-io/io.jatoms.page) scroll down a little bit until you see the "Open in Gipod" button and click on it.
-If you never used Gitpod before, then you might need to grant Gitpod access to your GitHub account. 
+There are just some simple steps to get started with contributing:
+* Create a GitHub account if don't have one already.
+* Go to the [GitHub repository of this site](https://github.com/jatoms-io/io.jatoms.page), scroll down and click the `Open in Gipod` button.
+* Grant Gitpod access to your GitHub account and you are ready to go. 
+
 After this you should see something like this:
 
 ![Gitpod landing screen](how_to_add_a_tutorial/gitpod_landing_screen.png)
 
-Usually at this time the local server that serves the website should be started and you are ready to go.
+Usually at this time the local server that serves the website should be started and you can start typing text.
 If not, then click into the terminal at the bottom and type `bundle exec jekyll serve`, which starts the server.
 
-If there is any problem that prevents you from getting started as described, then don't hesitate to [open an issue](https://github.com/jatoms-io/io.jatoms.page/issues) :)
+### Setup for a new tutorial
+In order to create your new tutorial, you need to follow these simple steps:
+* Create a new markdown file like `Your Tutorial.md` in the `_resources/Tutorials/` folder.
+* If you want to include images in your tutorial, then create a folder `your_tutorial` in the `_resources/Tutorials/` folder.
+* Create a new fork of our [base OSGi tutorial repository](TODO:create) that will hold the code for your tutorial and name it `your-tutorial`.
 
-### Create a new tutorial page
-Tutorials are located under `_resources/Tutorials/<tutorialname>.md`.
-Each tutorial is a seperate markdown file, so for you to get started with your own tutorial the first step is to create a new markdown file named after the title you chose for your tutorial, e.g., the file of this page is named `How to add a Tutorial.md`. 
-The ending `.md` marks it as a markdown file.
-The images you might want to include in your tutorial are located under `_resources/Tutorials/<tutorialname_lowercase_with_underscores>/<your_image>.png`
-So the next thing you do (if you have any images) is to create a folder that is named like your tutorial, but lowercased with underscores in between words, e.g., the image folder for this document is named `how_to_add_a_tutorial`
-Images within this folder should also be named lowercase with underscores in between words and be saved as .png files.
-
-Below you can see how this structure looks like for this document:
+Below you can see how this structure looks like for this document and its picture folder as an example:
 
 ![folder structure](how_to_add_a_tutorial/structure.png)
 
+The structure above has to be fulfilled as we try to create a folder structure that is easy to understand for future contributors.
+
+The name of your tutorial markdown file will also be used for navigation cards within the `Tutorials` folder on the page, so you should think of a speaking title. 
+The filename may contain whitespaces but must end with `.md` as it has to be a markdown file that will be processed by Jekyll, GitHub's static site generator.
+
+The images you might want to include in your tutorial must be put in the created folder that is named after your tutorial. 
+The name of this folder must be the exact same name as your tutorial title, but lowercased and with underscores in between words. 
+Otherwise the paths to your images will not work in Jekyll (it seems Jekyll doesn't like whitespaces ;) ). 
+So if your tutorial is name `My awesome tutorial.md` then your folder should be named `my_awesome_tutorial`.
+The pictures you put into this folder must follow the same naming convention, i.g., `my_awesome_picture.png`.
+
+The [base OSGi tutorial repository](TODO:create) that you forked serves as a basis for all our OSGi tutorials and contains some basic settings that easen the process of writing OSGi applications in GitPod.
+It also already comes with a readme that contains a GitPod button, that you should adopt to point to your repository instead of the base repository.
+
+> TODO: create base OSGi tutorial repository and describe better what it contains
+
 ### Working with frontmatter and markdown
-Until now you have created an empty markdown file for your tutorial and a folder that will contain the needed images. In order for your markdown file to get picked up properly by Jekyll (the static site generator used to create this website) you need to add so called frontmatter to your markdown file.
+Until now you have created an empty markdown file for your tutorial and a folder that will contain the needed images. 
+In order for your markdown file to get picked up properly by Jekyll you need to add frontmatter to your markdown file.
 Therefore you should open your markdown file and add the following text to it at the beginning:
 
 ```
@@ -60,25 +78,68 @@ This is called frontmatter and is just a little bit of yaml that provides additi
 The rest of the content is just plain markdown. 
 We have created a cheatsheet on how to use markdown on this site which you can use as a reference: [Markdown Cheatsheet](../Layouts_and_Markdown/Markdown Cheatsheet)
 
-### Create tutorial workspace
-TODO ....
-
 ## Best Practices 
+The following subsections give you some guidance on how to write well structured tutorials and some best practices we would like to see followed in order to offer newcomers a unified experience.
 
 ### Structure of a tutorial
 #### Abstract
-A short overview of what will be done in this tutorial
-#### Content 
-* Content should be broken down into short steps
-* Steps start with a practical short description of what is needed to be done to fulfill this step 
-* After this short description a detailed look back on what you did and what happened in the background is given.
-* Background knowledge, e.g., how maven works or something similar, should be created seperately in the Theory folder, marked as such and should provide a link to it.
-* Each step should have a corresponding branch in the tutorial's GitHub repository 
-* Each step should be a Level 2 heading (##) in the document 
-* Each step should have no links within the text, but only at the and of it (better reading flow, less distraction)
+Always write a short summary (only a few sentences)  of what will be done in this tutorial.
+
+This helps readers to judge if the content of this tutorial is helpful for them or not.
+
+#### Content
+For the actual content there are some rules to follow so that the appearance for all tutorials is similar to one another:
+* The content should be broken down into small steps 
+* Each step 
+    * has a corresponding level 2 heading in the document, i.e. in markdown use `##` and a short title 
+    * has a corresponding branch in the corresponding tutorial repository 
+    * is divided into three sections:
+        * a section with a short list of actions that the reader needs to do to fulfill this step 
+        * a (probably much longer) section with explanations of what each action does and what happens in the background
+        * a short section with links to further reading material   
+
+
+Why breaking down a tutorial in small steps?
+
+Large tutorials usually lead to higher bounce rates with readers, as the usual span of attention gets smaller and smaller the younger the readers are.
+Therefore we break down a large tutorial into small little chunks that are easier to overview and faster to fulfill. 
+Small. little steps always seem easier than one giant leap.
+In order to visually underline this structuring we use level 2 headings that will be displayed in the table of contents on the right side of a tutorial.
+
+In order to make it as easy as possible for readers to follow the steps of a tutorial we also structure the repository that contains the accompanying code into several little steps.
+We do this by offering a branch for each step. Ideally, the branch for te respective step is named the same, e.g., you named your step `lesson 02`, then the branch containing the status needed to work through this step is also called `lesson 02`
+
+Each step is additionally broken down into 3 sections, as described above. 
+The first section should only contain the minimal actions to be taken to fulfill this step without lengthy explanations, so that a reader gets to the result pretty quickly and doesn't need to scan through pages of text to find the action needed for this step.
+This has two reasons:
+* A novice quickly makes progress and is rewarded, thus he probably is higher motivated to read further or to do the next step 
+* An expert that only wants to refresh his memories of what exact actions need to be taken to achieve XY always has a good summary without scanning the whole text.
+
+The next section is the actual content, the why and how the actions described before do work. 
+This is the place where you should go into detail, explaining why you did this or that action and what is happening behind the curtains that the reader should know about.
+In this section you should refrain from linking to other pages, websites or even secitons in this document, otherwise you risk your reader to get lost in hyperspace.
+
+The right place to provide this further reading is the third section which should only contain links and reading recommendations, best with some additional explanation why the respective resource is worth a read or when to read it.
+
+To sum it up:
+* First talk about the **WHAT**, what to do, what result is expected
+* Then talk about the **WHY**, why do you need to do it this way and how does it work 
+* Finally provide further reading for topics that would be too much for your tutorial 
+
 #### Conclusion
-A short summary of what you've explained and where to get more information
+A short summary of what you've explained and what will be done in the next step.
+
+This is like binge watching on Netflix but with tutorials. Provide your reader with a short description of the knowledge you will teach him in the next step, a knowledge cliffhanger so to speak ;)
+
 ### Gitpod 
 The corresponding repository of the tuturial must be executable in gitpod, so that a reader can execute it without the need to setup everything on its own machine.
+
+This setup is mandatory as we want to provide a hassle free onboarding experience for newcomers. There is nothing worse than a tutorial that is not working although one did the same exact things as described by the author.
+By providing a reproducible developer workspace with GitPod we reduce the risk to loose newcomers due to not working tutorials.
+Also in order to fix bugs this setup is ideal, as a user can provide the author of a tutorial with a snapshot of the workspace in the state that produced a non-expected behavior.
+
 ### Draw.io
 Diagrams and similar stuff must be done with draw.io in order to be reproducible and editable in the future
+
+We all know that the only constant is change. So when we need to change some diagrams in a tutorial it would be pretty cumbersome to reprdouce the drawings one author made each time over again.
+Therefore we would liek to use draw.io whose files can be checked into GitHub and therefore be used whenever we need to change a diagram.
