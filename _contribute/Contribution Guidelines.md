@@ -1,12 +1,10 @@
 ---
 layout: content
-title: Contribution Guidelines
 description: If you want to contribute, then read these guidelines first.
 author: jatoms-io
 published_at: 05-05-2019
+order: 10
 ---
-
-# Guidelines 
 
 Actually, we're not really restrictive, but for the sake of consistency we would love to see some simple rules followed when you publish something via this site ;)
 

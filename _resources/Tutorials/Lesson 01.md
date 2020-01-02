@@ -1,11 +1,10 @@
 ---
 layout: content
 author: jatoms-io
-title: Lesson 01
 description: From a hello world in plain Java to your first OSGi bundle
 published_at: 31-12-2019
+order: 20
 ---
-# Lesson 01
 In this lesson we will start with a good old "Hello World" java application and then, step by step, "OSGify" this application.
 
 This tutorial will contain everything necessary for you to understand what is going on in the background and why the things in OSGi are as they are. 

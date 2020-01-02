@@ -40,17 +40,18 @@
             {% assign collection = site.collections | where_exp: "item", "item.label == page.collection" | first %}
 
             <!-- Get all subfolders -->
-            {% for doc in collection.docs %}
+            {% assign docs = collection.docs | sort: 'order' %}
+            {% for doc in docs %}
 
                 {% assign doc_url_parts = doc.url | split: '/' %}
                 {% assign doc_url_parts_size = doc_url_parts | size %}
-                {% assign subfoldername = doc_url_parts | last %}
+                {% assign partname = doc_url_parts | last | url_decode %}
 
                 <!-- We assume the colelciton is organized as a nested folder structure, i.e. a tree
                 and there is only one index file allowed per subfolder, so its ok to just check for 
-                url_parts_size isntead of comparing for same url prefixes  -->
-                {% if subfoldername == 'index.html' and subfolder_url_parts_size == doc_url_parts_size %}
-                    {% assign subfolder_base_url = doc.url | replace: subfoldername %}
+                url_parts_size instead of comparing for same url prefixes  -->
+                {% if partname == 'index.html' and subfolder_url_parts_size == doc_url_parts_size %}
+                    {% assign subfolder_base_url = doc.url | replace: partname %}
                     {% assign subfolder_base_url_parts = subfolder_base_url | split: '/' %}
                     {% assign subfolder_name = subfolder_base_url_parts | last | url_decode %}
                     <!--create a card for subfolder -->
@@ -65,24 +66,19 @@
                         </a>
                     </div>
                 {% endif %}
-            {% endfor %}
 
-            <!-- Get all files in the same folder -->
-            {% for doc in collection.docs %}
-
-                {% assign doc_url_parts = doc.url | split: '/' %}
-                {% assign doc_url_parts_size = doc_url_parts | size %}
-                {% assign filename = doc_url_parts | last | url_decode  %}
+                 <!-- This part is only needed for content files -->
                 {% assign doc_rm = doc_url_parts | last %}
                 {% assign doc_base_url = doc.url | replace: doc_rm %}
 
-                {% if url_parts_size == doc_url_parts_size and filename != 'index.html' and doc_base_url == base_url %}
+                <!-- Then it's probably a content file -->
+                {% if url_parts_size == doc_url_parts_size and partname != 'index.html' and doc_base_url == base_url %}
                 <!--create a card for file -->
                 <div class="col s12 m8 push-m2 l6 xl4">
                     <a href="{{doc.url}}">
                         <div class="card small hoverable">
                             <div class="card-content">
-                                <span class="card-title">{{ filename | remove: '.html' }}</span>
+                                <span class="card-title">{{ partname | remove: '.html' }}</span>
                                 <p>{{doc.description}}</p>
                             </div>
                         </div>

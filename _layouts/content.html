@@ -15,6 +15,7 @@
   <main>
   <div class="container">
         {% assign url_parts = page.url | split: '/' %}
+        <!-- Create the breadcrumbs for this page -->
         <div class="row breadcrumb-container">
             <div class="nav-wrapper">
                 <div class="col s12">
@@ -34,6 +35,11 @@
         </div>
         <div class="row">
             <div id="text-content" class="section col s12 l10">
+                <!-- Get name of the file as title -->
+                {% assign content_title = url_parts | last | url_decode | remove: ".html" %}
+                {% assign lower_content_title = content_title | downcase %}
+                <h1 id="{{lower_content_title}}">{{ content_title }}</h1>
+                <div class="divider"></div> 
 				{{content}}
 		    </div>
 			<div class="col hide-on-med-and-down l2">

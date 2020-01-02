@@ -41,9 +41,10 @@
                 {% assign news = '' | split: '' %}
                 {% for collection in site.collections %}
                     {% if collection.news_relevant %}
+                        <!-- Filter items that don't have a published_at property -->
                         {% assign items = collection.docs | where_exp:"doc", "doc.published_at" %}
+                        <!-- Filter items that don't have any description property -->
                         {% assign items = items | where_exp:"item", "item.description" %}
-                        {% assign items = items | where_exp:"item", "item.title" %}
                         {% assign news = news | concat: items %}
                     {% endif %}
                 {% endfor %}
@@ -56,7 +57,10 @@
                     <a class="newsitem" href="{{newsitem.url}}">
                         <div class="card timeline-content hoverable">
                             <div class="card-content">
-                                <span class="card-title activator grey-text text-darken-4">{{newsitem.title}}</span>
+                                <!-- Get name of the file as title -->
+                                {% assign url_parts = newsitem.url | split: '/' %}
+                                {% assign newsitem_title = url_parts | last | url_decode | remove: ".html" %}
+                                <span class="card-title activator grey-text text-darken-4">{{newsitem_title}}</span>
                                 <p class="newsitem-date">{{ newsitem.published_at | date: "%B %d, %Y" }}</p>
                                 <p>{{newsitem.description}}</p>
                             </div>

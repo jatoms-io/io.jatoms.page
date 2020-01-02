@@ -1,12 +1,10 @@
 ---
 layout: content
 author: jatoms-io
-title: Roadmap
 description: The planned outline of tutorials that should be created for this site
 published_at: 27-12-2019
+order: 10
 ---
-# Roadmap
-
 ## Content
 This file describes the planned outline the series of tutorials on this site should follow in order to provide a consistent learning experience for OSGi beginners
 

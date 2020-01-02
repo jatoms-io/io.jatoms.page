@@ -1,13 +1,10 @@
 ---
 layout: content
-title: Content Layout
 description: How content is displayed in this template (the markdown cheatsheet)
 author: jatoms-io
 published_at: 05-05-2019
+order: 10
 ---
-
-# Content
-
 
 Front matter to use for a content page:
 

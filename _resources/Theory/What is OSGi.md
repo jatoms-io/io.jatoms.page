@@ -1,12 +1,10 @@
 ---
 layout: content
 author: jatoms-io
-title: What is OSGi?
 description: A short explanation of what OSGi is from a Java developer's point of view.
 published_at: 12-05-2019
+order: 10
 ---
-
-# What is OSGi?
 
 The question "What is OSGi" is frightingly asked very often on the internet or used as the title of blog posts / videos that try to explain it [[1]][1] [[2]][2] [[3]][3] (Just for fun I should have added a link to this post, but ... nah).
 When I began to deep-dive into the mysteries of the beautyful and sometimes scary world of OSGi, I myself asked this question very often and got answers similar to those given by the posts/videos mentioned above.

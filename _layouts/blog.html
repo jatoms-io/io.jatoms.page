@@ -35,16 +35,19 @@
                         </div>
                         <div class="card-content">
                             <div class="row valign-wrapper">
+                                <!-- Get name of the file as title -->
+                                {% assign url_parts = post.url | split: '/' %}
+                                {% assign post_title = url_parts | last | url_decode | remove: ".html" %}
                                 {% if post.author %}
                                     <div class="col s2">
                                         <img src="https://avatars3.githubusercontent.com/{{post.author}}?v=3&amp;s=35" class="circle">
                                     </div>
                                     <div class="col s10">
-                                        <span class="post-title">{{post.title}}</span>
+                                        <span class="post-title">{{post_title}}</span>
                                     </div>
                                 {% else %}
                                     <div class="col s12">
-                                        <span class="post-title">{{post.title}}</span>
+                                        <span class="post-title">{{post_title}}</span>
                                     </div>
                                 {% endif %}
                             </div>
