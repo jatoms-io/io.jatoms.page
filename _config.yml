@@ -45,7 +45,7 @@ collections:
     news_icon: chat
     navbar_title: Blog
     order: 20
-  gitter:
+  chat:
     output: true
     navbar_title: Chat
     order: 30
