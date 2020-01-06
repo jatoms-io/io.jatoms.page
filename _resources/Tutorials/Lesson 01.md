@@ -2,31 +2,95 @@
 layout: content
 author: jatoms-io
 description: From a hello world in plain Java to your first OSGi bundle
-published_at: 31-12-2019
+published_at: 01-01-2020
 order: 20
 ---
-In this lesson we will start with a good old "Hello World" java application and then, step by step, "OSGify" this application.
+## Abstract
+In this tutorial we will first create a good old Java8 Hello World application with Maven and then piece by piece add stuff to make it OSGi compatibel.
 
-This tutorial will contain everything necessary for you to understand what is going on in the background and why the things in OSGi are as they are. 
-The only thing that is assumed as prerequisite is knowledge about Java as a language, so you need to know how for-loops, if-else-statements and stuff like this are working, but nothing more.
-If you are a more advanced reader, then it's up to you to skip the parts that only contain stuff you already know, e.g., about maven, classloading or stuff like that.
+## Step 01 - Create a Java 8 "Hello World" application with Maven
+**Instructions**
+* create new java8 project 
+  * ctrl + shift + p -> type `maven` and choose `maven: Create Maven Project` -> select `More..` -> type `java8` -> select `javase8-essentials-archetype` -> select 2.0 -> select root folder `io.jatoms.tutorial.lesson01`
+  * groupId: io.jatoms, archetypeId: hello-java, version -> default: hit enter, package: default -> hit enter -> enter 
+  * in folder `hello-java/src/main/java` create new file `io/jatoms/Hello.java`
+  * open `Hello.java` (wait for language server to start) -> type `class` -> hit `ctrl + space` -> select `class` with a square symbol in front of it -> type `main` -> hit enter
+  * In you main method type `syso` -> hit `ctrl + enter` and complete your sysout with `"Hello Java!"`
+* test if everything is correct
+  * in your terminal type `cd hello-java` -> enter -> type `mvn package` -> enter
+  * after downloading the internet maven should display something like this
+  ![result of mvn package](images/lesson_01/result_mvn_package.png)
 
-As it is the first tutorial in a series it will be a little bit longer, as we need to explain some basics, that we assume to be known in later lessons.
+**Explanations**
+* First we adviced maven to create a new project from an archetype 
+    * what is maven?
+    * what is an archetype?
+* Then we adviced maven to package our application 
+    * what are maven phases?
+    * what did this do? -> look into target folder -> download jar. -> use 7zip or similar to open and have a look at contents, especially Manifest.MF file 
 
-An executable workspace where you can try the stuff shown in this lesson can be found here: (TODO)
+## Step 02 - Make your application OSGi compatible
+**Instructions**
+* open pom.xml -> add 
+```xml
+<build>
+    <plugins>
+        <!-- Use the bnd-maven-plugin and assemble the symbolic names -->
+        <plugin>
+            <groupId>biz.aQute.bnd</groupId>
+            <artifactId>bnd-maven-plugin</artifactId>
+            <version>4.3.0</version>
+            <configuration>
+                <bnd><![CDATA[
+    Bundle-SymbolicName: ${project.groupId}.${project.artifactId}
+    -sources: true
+    -contract: *
+    ]]></bnd>
+            </configuration>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>bnd-process</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+        <!-- Required to make the maven-jar-plugin pick up the bnd 
+            generated manifest. Also avoid packaging empty Jars -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.0.2</version>
+            <configuration>
+                <archive>
+                    <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+                </archive>
+                <skipIfEmpty>true</skipIfEmpty>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+```
+* in terminal type `mvn package` -> hit enter
 
-So let's begin and create our excitingly boring "Hello World" application.
-Boring because you've probably created a lot of them by now and excitingly because you still can learn so much about frameworks/languages out of them if you are dissecting them piuce by piece.
+**Explanations**
+* What are maven plugins?
+* What does the bnd-maven-plugin do?
+    * Why is the maven-jar-plugin instruction needed?
+* what did this do? -> look into target folder -> download jar. -> use 7zip or similar to open and have a look at contents, especially Manifest.MF file and OSGi-OPT
+* What do the entries in the Manifest mean? 
+* What is OSGi from a Java developer's perspective?
+    * a Framework with a runtime 
+    * centered around three main ideas
+        * modules that state what they need and provide (assembled at build/runtime by an external tool based on these informations)
+        * services to enable interaction between modules 
+        * dynamism
 
-The first thing you should do is go to our prepared [GitPod](TODO: add link to GitPod explanation) workspace, switch to the terminel (CTRL+Ö) and type `mvn archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4`
-This command will tell maven to generate a project for you in the folder that you are currently in. 
-For this maven asks you to insert a groupId, artifactId and a version. 
-You can enter whatever you want, but by convention you usally insert a reverted domain of yours as groupId, for me that would be `io.jatoms`, as artifactId we pick `hello-world` and the rest maven asks us for we just use the defaults by pressing enter, until maven shows us an output like depicted below.
-![maven command line](images/lesson_01/maven_command_line.png)
 
-What maven did here was to create a folder and structure that adheres to the default layout for maven Java projects and should look like this: 
-![project outline](images/lesson_01/project_outline.png)
 
+
+
+**Old outline**
 * Starting with an empty workspace (Gitpod should have all necessary tools set up, snippets unfortunately not working yet)
 * Use Maven archetype to create a simple plain Java Hello World Application
 * demonstrate everything works fine
