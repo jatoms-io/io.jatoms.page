@@ -6,25 +6,124 @@ published_at: 01-01-2020
 order: 20
 ---
 ## Abstract
-In this tutorial we will first create a good old Java8 Hello World application with Maven and then piece by piece add stuff to make it OSGi compatibel.
+In this tutorial we will first create a Java "Hello World" application with Maven and then, piece by piece, add stuff to make this Java porject an OSGi project.
+During these steps background knowledge is provided to understand what we did in each step.
+Each step first contains a set of instructions that you can follow and afterwards a set of epxlanations, that describe what each instructions does.
 
-## Step 01 - Create a Java 8 "Hello World" application with Maven
-**Instructions**
-* create new java8 project 
-  * ctrl + shift + p -> type `maven` and choose `maven: Create Maven Project` -> select `More..` -> type `java8` -> select `javase8-essentials-archetype` -> select 2.0 -> select root folder `io.jatoms.tutorial.lesson01`
-  * groupId: io.jatoms, archetypeId: hello-java, version -> default: hit enter, package: default -> hit enter -> enter 
-  * in folder `hello-java/src/main/java` create new file `io/jatoms/Hello.java`
-  * open `Hello.java` (wait for language server to start) -> type `class` -> hit `ctrl + space` -> select `class` with a square symbol in front of it -> type `main` -> hit enter
-  * In you main method type `syso` -> hit `ctrl + enter` and complete your sysout with `"Hello Java!"`
-* test if everything is correct
-  * in your terminal type `cd hello-java` -> enter -> type `mvn package` -> enter
-  * after downloading the internet maven should display something like this
-  ![result of mvn package](images/lesson_01/result_mvn_package.png)
+## Step 01 - Create a simple Java "Hello World" application with Maven
+### Instructions
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#*https://github.com/jatoms-io/io.jatoms.tutorial.lesson01/tree/step-01)
 
-**Explanations**
-* First we adviced maven to create a new project from an archetype 
-    * what is maven?
-    * what is an archetype?
+#### Lets create a new Java project: 
+* In the command line type `mvn archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4`
+* For groupId type `io.jatoms`, for archetypeId `lesson01`, for version just hit enter, for package also just hit enter -> enter 
+* Your file explorer on the left now should show something like this: 
+![result of maven quickstart archetype](images/lesson-01/maven-quickstart-archetype-result.png)
+
+#### Lets create an executable JAR:
+* Open the file `lesson01/pom.xml` and replace the `<pluginManagement>...</pluginManagement>` section with the following snippet:
+
+```xml
+<plugins>
+    <plugin>
+        <!-- Build an executable JAR -->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.2.0</version>
+        <configuration>
+            <archive>
+                <manifest>
+                    <mainClass>io.jatoms.App</mainClass>
+                </manifest>
+            </archive>
+        </configuration>
+    </plugin>
+</plugins>
+```
+
+* In your terminal type `cd lesson01` -> enter -> type `mvn package` -> enter
+* After downloading the internet maven should display something like this
+![result of mvn package](images/lesson-01/maven-package-result.png)
+  
+#### Run Hello World:
+* In your terminal type `java -jar target/lesson01-1.0-SNAPSHOT.jar`
+* Be awestruck by your majestic "Hello World" on the commandline ;)
+
+### Explanations
+In this section we will have a look at each instruction stated above in detail. 
+For a more experienced Java developer this might become boring, so feel free to skip the explanations if there's nothing new for you ;)
+
+So let's now have a detailed look at each instruction we executed, starting with 
+```md
+* In the command line type `mvn archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4`
+* For groupId type `io.jatoms`, for archetypeId `lesson01`, for version just hit enter, for package also just hit enter -> enter 
+```
+If you have ever worked with Maven before you can probably guess what is going on behind the curtain, but for those not familiar with Maven: Here comes a lenghty explanation!
+
+#### What is Maven and what did we do with it?
+Maven is, at its core, a plugin execution framework.
+By following the instructions stated above we we advised maven via the `mvn` command to execute the `generate` goal of the `archetype` plugin to generate a simple Java project,
+by providing the Maven coordinates (archetypeGroupId, archetypeArtifactId, archetypeVersion) of the archetype we want to use.
+
+So what is a plugin, what are goals and what is an archetype?
+
+Plugins are Jars that contain classes which can be goals (or just helper classes for those goals). 
+Each goal is usually annotated with a `@Mojo` annotation (I think this stands for "Maven plain old Java object") and have an execute method that can be called by Maven:
+
+```java 
+@Mojo( name = "sayhi")
+public class GreetingMojo extends AbstractMojo
+{
+    public void execute() throws MojoExecutionException
+    {
+        getLog().info( "Hello, world." );
+    }
+}
+```
+The image below just shows grpahically how a Maven command usually looks like and how Maven is logically structured.
+
+![maven overview](images/lesson-01/maven-overview.png)
+
+Regarding Maven coordinates and archetypes:
+
+Maven coordinates can be seen as a unique identifier that consists of a `groupId`, an `artifactId` and a `version` which are usually given in this format:
+
+```xml
+<groupId>my.domain</groupId>
+<aritfactId>my.artifact</artifactId>
+<version>1.2.3</version>
+```
+
+Those coordinates are heavily used in [Maven Central](https://mvnrepository.com/repos/central) which is just a giant database for Jars and other Java things that you can use in your project. 
+Here the Maven coordinates are usually used to find the thing you want, for example an archetype that you want to use to create a project.
+The archetype we used is also stored in this giant database: [See here](https://search.maven.org/search?q=g:org.apache.maven.archetypes%20AND%20a:maven-archetype-quickstart)
+
+So what is an archetype? 
+
+An archetype is really nothing more than a Jar that contains the same folder and file structure that we want to generate, however some names are placeholder for input values provided by the user during the archetype generation.
+The package name we provided during archetype generation is such a placeholder, which is then filled in the App.java file like this
+```java 
+package $package;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
+    }
+}
+```
+
+So to summarize what this line `mvn archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4` did:
+* Tell Maven to execute the archetype plugin with the generate goal and the Maven coordinates for our archetype 
+* The plugin then asks Maven Central for the Jar at the given coordinates, dwonloads it and uses it to generate the project for us.
+
+
+
 * Then we adviced maven to package our application 
     * what are maven phases?
     * what did this do? -> look into target folder -> download jar. -> use 7zip or similar to open and have a look at contents, especially Manifest.MF file 
