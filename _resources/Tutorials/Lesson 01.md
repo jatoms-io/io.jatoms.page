@@ -2,7 +2,7 @@
 layout: content
 author: jatoms-io
 description: From a hello world in plain Java to your first OSGi bundle
-published_at: 01-01-2020
+published_at: 2020-01-01
 order: 20
 ---
 ## Abstract

@@ -2,7 +2,7 @@
 layout: content
 author: jatoms-io
 description: A short explanation of what OSGi is from a Java developer's point of view.
-published_at: 12-05-2019
+published_at: 2019-05-12
 order: 10
 ---
 

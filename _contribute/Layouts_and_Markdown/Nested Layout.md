@@ -2,7 +2,7 @@
 layout: content
 description: How nested folders are structured and what frontmatter they need
 author: jatoms-io
-published_at: 05-05-2019
+published_at: 2019-05-05
 ---
 
 Front matter to use for a nested page:

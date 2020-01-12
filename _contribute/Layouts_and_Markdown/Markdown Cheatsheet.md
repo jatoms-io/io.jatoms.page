@@ -2,7 +2,7 @@
 layout: content
 description: How content is displayed in a page with content layout (the markdown cheatsheet)
 author: jatoms-io
-published_at: 02-01-2020
+published_at: 2020-01-02
 order: 10
 ---
 

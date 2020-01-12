@@ -2,7 +2,7 @@
 layout: content
 description: Guidance on adding a new tutorial to this site, also some best practices
 author: jatoms-io
-published_at: 02-01-2020
+published_at: 2020-01-02
 order: 10
 ---
 
@@ -63,7 +63,7 @@ Therefore you should open your markdown file and add the following text to it at
 layout: content
 description: Guidance on adding a new tutorial to this site, also some best practices
 author: jatoms-io
-published_at: 02-01-2020
+published_at: 2020-01-02
 order: 10
 ---
 ```
@@ -72,7 +72,7 @@ This is called frontmatter and is just a little bit of yaml that provides additi
 * **layout**: mandatory, defines which layout should be used to display the written markdown content. For tutorials this should be `content`. Layouts are usually located in the `_layouts` folder if you want to have a look at them ;)
 * **description**: mandatory if you want your tutorial to appear in the landingpage's news section, a short description of what this tutorial is about. 
 * **author**: optional, this is your GitHub handle and is used to get your image to be added to the tutorial's card on the Tutorials page.
-* **published_at**: mandatory if you want your tutorial to appear in the landingpage's news section. It's in the form day-month-year and should be updated each time you publish or change the tutorials content.
+* **published_at**: mandatory if you want your tutorial to appear in the landingpage's news section. It's in the form year-month-date and should be updated each time you publish or change the tutorials content.
 * **order**: optional, you can use this to order the tutorials. By convention you should use only two-digit steps, e.g., 10, 20, 30, so that you can later fit other tutorials in between 
 
 The rest of the content is just plain markdown. 
