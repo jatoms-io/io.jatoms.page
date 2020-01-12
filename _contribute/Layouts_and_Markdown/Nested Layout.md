@@ -1,7 +1,7 @@
 ---
 layout: content
 description: How nested folders are structured and what frontmatter they need
-author: jatoms-io
+author: Sandared
 published_at: 2019-05-05
 ---
 

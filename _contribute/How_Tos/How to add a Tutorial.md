@@ -1,7 +1,7 @@
 ---
 layout: content
 description: Guidance on adding a new tutorial to this site, also some best practices
-author: jatoms-io
+author: Sandared
 published_at: 2020-01-02
 order: 10
 ---

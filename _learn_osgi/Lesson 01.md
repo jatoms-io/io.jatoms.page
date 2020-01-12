@@ -1,6 +1,6 @@
 ---
 layout: content
-author: jatoms-io
+author: Sandared
 description: From a hello world in plain Java to your first OSGi bundle
 published_at: 2020-01-12
 order: 20
@@ -19,7 +19,7 @@ Each step first contains a set of instructions that you can follow and afterward
 * When asked for an archetypeId type `lesson01`
 * When asked for a version/package just take the defaults by hitting enter 
 * Your file explorer on the left now should show something like this: 
-![result of maven quickstart archetype](images/lesson-01/maven-quickstart-archetype-result.png)
+![result of maven quickstart archetype](images/lesson_01/maven-quickstart-archetype-result.png)
 
 #### Lets create an executable JAR:
 * Open the file `lesson01/pom.xml` and replace the `<pluginManagement>...</pluginManagement>` section with the following snippet:
@@ -45,7 +45,7 @@ Each step first contains a set of instructions that you can follow and afterward
 * Don't forget to save your pom.xml file
 * In your terminal type `cd lesson01` -> enter -> type `mvn package` -> enter
 * After downloading the internet maven should display something like this
-![result of mvn package](images/lesson-01/maven-package-result.png)
+![result of mvn package](images/lesson_01/maven-package-result.png)
   
 #### Run Hello World:
 * In your terminal type `java -jar target/lesson01-1.0-SNAPSHOT.jar`
@@ -58,7 +58,7 @@ For a more experienced Java developer this might become boring, so feel free to 
 #### First Instruction
 First we will dissect the Maven command we used to create the project and also learn what Maven is in the first place.
 Below you see a picture that breaks down this command in its different parts:
-![maven command](images/lesson-01/maven-command.png)
+![maven command](images/lesson_01/maven-command.png)
 
 Via the `mvn` command we advised Maven to execute the `generate` goal of the `archetype` plugin to use the provided parameters for finding and downloading a Maven archetype from Maven Central that is then used to create a simple Java project for us.
 
