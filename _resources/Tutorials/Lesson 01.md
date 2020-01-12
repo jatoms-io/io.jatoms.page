@@ -198,6 +198,119 @@ In short:
 > A pom.xml file is a configuration file that lets you configure Maven
 
 However, this explanation is a little bit abstract. Of course, you now know that you can configure Maven, but what does this actually mean and what at all can I configure?
+So let's look at the parts of a pom.xml file that we are using here and what they are configuring.
+
+First, a minimal pom.xml that you need to execute Maven successfully looks like this
+
+```xml
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.mycompany.app</groupId>
+  <artifactId>my-app</artifactId>
+  <version>1</version>
+</project>
+```
+
+There's not much to this, as this pom.xml just provides the Maven coordinates of your project and the `modelVersion` which states the Project Object Model version that is used for this pom.xml.
+The only thing you need to know about this is that Maven 1.x only works with pom.xmls that daclare `modelVersion` to be 3.0.0 and Maven 2.x/3.x (3.6.2 is the version at the time of writing) only works with pom.xmls that declare `modelVersion` to be 4.0.0.
+
+The pom.xml can be kept so short because of two reasons:
+* Maven is *convention over configuration* based 
+* Maven comes with a Super POM from which all pom.xml files inherit 
+
+Convention over configuration means developers are not required to create the whole build process by themselves. 
+Developers do not have to define each configuration detail, as Maven provides sensible defaults for projects, for example a default folder structure which (for Java projects) always lookos like this:
+```
+root (project root folder)
+|-- src 
+    |-- main 
+        |-- java (below this is your source code)
+            |-- your 
+                |-- package
+        |-- resources (below this you can put files and stuff)
+    |-- test 
+        |-- java (below this is test source code)
+            |-- your 
+                |-- package
+|-- target
+    |-- classes (compiled class files end up here)
+        |-- META-INF (contains meta information about this jar)
+            |-- MANIFEST.MF 
+    |-- yourjar-1.0.0-SNAPSHOT.jar (the created jar for your project)
+```
+
+The other reason we mentioned, the Super POM, defines all the necessary data needed for such a convention-based project to be build by Maven and looks in an abbreviated version like this:
+```xml
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  ...
+  <pluginRepositories>
+    <pluginRepository>
+      <id>central</id>
+      <name>Central Repository</name>
+      <url>https://repo.maven.apache.org/maven2</url>
+      ...
+    </pluginRepository>
+  </pluginRepositories>
+ 
+  <build>
+    <directory>${project.basedir}/target</directory>
+    <outputDirectory>${project.build.directory}/classes</outputDirectory>
+    <finalName>${project.artifactId}-${project.version}</finalName>
+    <testOutputDirectory>${project.build.directory}/test-classes</testOutputDirectory>
+    <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
+    <scriptSourceDirectory>${project.basedir}/src/main/scripts</scriptSourceDirectory>
+    <testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
+    <resources>
+      <resource>
+        <directory>${project.basedir}/src/main/resources</directory>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <directory>${project.basedir}/src/test/resources</directory>
+      </testResource>
+    </testResources>
+    ...
+  </build>
+  ...
+</project>
+```
+We can see now where Maven got its information which repository to search when it needs a plugin that it doesn't have yet locally, i.e., `https://repo.maven.apache.org/maven2`.
+We also can see that the Super POM provides Maven with a set of properties like `sourceDirectory` or `outputDirectory` which Maven needs during a build in order to know where to take the source code from and where to put a final jar file into.
+For most of these properties Maven uses another property called `project.basedir` which is always the directory where the project pom.xml file lies in.
+
+Now that we know where Maven gets most of its basic build information from, we turn back to our own pom.xml file.
+
+The part of the pom.xml we touched during the tutorial is the `build` section, which, as the name already implies, configures what Maven shoudl do during the build of our project.
+To this `build` section we added a `plugin` called `maven-jar-plugin` and provided a property called `archive.manifest.mainClass` via a configuration as depicted below:
+
+```xml
+<plugins>
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.2.0</version>
+        <configuration>
+            <archive>
+                <manifest>
+                    <mainClass>io.jatoms.App</mainClass>
+                </manifest>
+            </archive>
+        </configuration>
+    </plugin>
+</plugins>
+```
+What this does is it tells Maven to include this plugin during a build and hand it over the parameter we defined.
+The parameter is the fully qualified class name of the class in our project that has a main method in it.
+
+TODO: package -> Maven lifecycles -> goal bindings
+
+During a build the plugin is called by Maven and uses the provided class name to create a MANIFEST.MF file in our final jar file that has now the following entry: `Main-Class: io.jatoms.App`.
+This MANIFEST.MF with its Main-Class entry in turn is used later by Java to find the class within our jar that it should execute whenn we issued the command `java -jar ...`
+
+TODO: Closer look at manifest for later comparison with OSGified manifest.
+
 
 
 
@@ -213,6 +326,7 @@ If you are interested in more in-depth knowledge about the stuff you just read t
 * [Maven Central, the giant database containing all the Jars your heart desires](https://mvnrepository.com/repos/central)
 * [How to write your own Maven plugin](https://maven.apache.org/guides/plugin/guide-java-plugin-development.html)
 * [How to create your own Maven archetype](https://maven.apache.org/guides/mini/guide-creating-archetypes.html)
+* [Introduction to the POM](https://maven.apache.org/guides/introduction/introduction-to-the-pom.html) 
 
 ## Step 02 - Make your application OSGi compatible
 **Instructions**
