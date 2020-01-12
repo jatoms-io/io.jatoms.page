@@ -45,7 +45,7 @@ The filename may contain whitespaces but must end with `.md` as it has to be a m
 The images you might want to include in your tutorial must be put in the created folder that is named after your tutorial. 
 The name of this folder must be the exact same name as your tutorial title, but lowercased and with underscores in between words. 
 Otherwise the paths to your images will not work in Jekyll (it seems Jekyll doesn't like whitespaces ;) ). 
-So if your tutorial is name `My awesome tutorial.md` then your folder should be named `my_awesome_tutorial`.
+So if your tutorial is name `My awesome tutorial.md` then your folder should be named `images/my_awesome_tutorial`.
 The pictures you put into this folder must follow the same naming convention, i.g., `my-awesome_picture.png`.
 
 The [base OSGi tutorial repository](https://github.com/jatoms-io/io.jatoms.tutorial.base) that you forked serves as a basis for all our OSGi tutorials and contains some basic settings that easen the process of writing OSGi applications in GitPod.
