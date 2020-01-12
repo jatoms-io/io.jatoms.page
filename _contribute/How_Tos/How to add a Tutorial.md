@@ -22,20 +22,20 @@ There are just some simple steps to get started with contributing:
 
 After this you should see something like this:
 
-![Gitpod landing screen](how_to_add_a_tutorial/gitpod_landing_screen.png)
+![Gitpod landing screen](images/how_to_add_a_tutorial/gitpod_landing_screen.png)
 
 Usually at this time the local server that serves the website should be started and you can start typing text.
 If not, then click into the terminal at the bottom and type `bundle exec jekyll serve`, which starts the server.
 
 ### Setup for a new tutorial
 In order to create your new tutorial, you need to follow these simple steps:
-* Create a new markdown file like `Your Tutorial.md` in the `_resources/Tutorials/` folder.
-* If you want to include images in your tutorial, then create a folder `your_tutorial` in the `_resources/Tutorials/` folder.
-* Create a new fork of our [base OSGi tutorial repository](TODO:create) that will hold the code for your tutorial and name it `your-tutorial`.
+* Create a new markdown file like `Your Tutorial.md` in the `_learn_osgi/Tutorials/` folder.
+* If you want to include images in your tutorial, then create a folder `your_tutorial` in the `_learn_osgi/Tutorials/` folder.
+* Create a new repository in your GitHub account that will hold the code for your tutorial, name it `your-tutorial` and copy the contents of our [base OSGi tutorial repository](https://github.com/jatoms-io/io.jatoms.tutorial.base).
 
-Below you can see how this structure looks like for this document and its picture folder as an example:
+Below you can see how the structure looks like for lesson-01 of our OSGi tutorials and its picture folder as an example (ignore the index.md file):
 
-![folder structure](how_to_add_a_tutorial/structure.png)
+![folder structure](images/how_to_add_a_tutorial/tutorial-structure.png)
 
 The structure above has to be fulfilled as we try to create a folder structure that is easy to understand for future contributors.
 
@@ -46,9 +46,9 @@ The images you might want to include in your tutorial must be put in the created
 The name of this folder must be the exact same name as your tutorial title, but lowercased and with underscores in between words. 
 Otherwise the paths to your images will not work in Jekyll (it seems Jekyll doesn't like whitespaces ;) ). 
 So if your tutorial is name `My awesome tutorial.md` then your folder should be named `my_awesome_tutorial`.
-The pictures you put into this folder must follow the same naming convention, i.g., `my_awesome_picture.png`.
+The pictures you put into this folder must follow the same naming convention, i.g., `my-awesome_picture.png`.
 
-The [base OSGi tutorial repository](TODO:create) that you forked serves as a basis for all our OSGi tutorials and contains some basic settings that easen the process of writing OSGi applications in GitPod.
+The [base OSGi tutorial repository](https://github.com/jatoms-io/io.jatoms.tutorial.base) that you forked serves as a basis for all our OSGi tutorials and contains some basic settings that easen the process of writing OSGi applications in GitPod.
 It also already comes with a readme that contains a GitPod button, that you should adopt to point to your repository instead of the base repository.
 
 > TODO: create base OSGi tutorial repository and describe better what it contains

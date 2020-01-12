@@ -33,11 +33,11 @@ twitter_button:
 collections:
   landingpage:
     output: true
-  resources:
+  learn_osgi:
     output: true
     news_relevant: true
     news_icon: apps
-    navbar_title: Resources
+    navbar_title: Learn OSGi
     order: 10
   blog:
     output: true
