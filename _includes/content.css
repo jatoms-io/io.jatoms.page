@@ -14,6 +14,7 @@
 .highlight .nc { color: {{accentColor}}} /* Name.Class */
 .highlight .nd { color: {{secondaryTextColor}} } /* Name.Decorator */
 .highlight .nf { color: {{accentColor}} } /* Name.Function */
+.highlight .nt { color: {{primaryTextColor}}; font-weight: bold; }
 .highlight .mf { color: {{primaryLightColor}} } /* Literal.Number.Float */
 .highlight .mh { color: {{primaryLightColor}} } /* Literal.Number.Hex */
 .highlight .mi { color: {{primaryLightColor}} } /* Literal.Number.Integer */
@@ -33,13 +34,18 @@
 div.highlighter-rouge{padding:9px 14px;background:{{secondaryBackgroundColor}};border:1px solid {{dividerColor}};border-radius:4px; margin-bottom: 10px; overflow-x:scroll;}
 code.highlighter-rouge{padding:0px 3px;background:{{secondaryBackgroundColor}};border:1px solid {{dividerColor}};border-radius:3px;}
 
+/* Code */
+code{font-size:14px;}
+pre.highlight{margin:0px;}
+div.highlighter-rouge{padding-top: 3px;padding-bottom: 3px;}
+
 /* Make headers a little bit smaller */
-h1{font-size:2.8rem;}
-h2{font-size:2.5rem;}
-h3{font-size:2.1rem;}
-h4{font-size:1.8rem;}
-h5{font-size:1.3rem;}
-h6{font-size:1rem;}
+h1{font-size:32px;}
+h2{font-size:27px;}
+h3{font-size:24px;}
+h4{font-size:21px;}
+h5{font-size:18px;}
+h6{font-size:16px;}
 
 /* Plain text */
 p{text-align:justify;}
@@ -54,5 +60,5 @@ table.striped>tbody>tr:nth-child(odd){background-color:{{secondaryBackgroundColo
 .table-of-contents a.active {border-left:2px solid {{accentColor}}; color:{{primaryLightColor}};}
 .table-of-contents .second-level a {padding-left:40px; font-size:13px; color: {{primaryLightColor}};}
 
-/* Make images responsive */
+/* Images */
 img{max-width: 100%;height: auto;}

@@ -10,13 +10,14 @@ In this tutorial we will first create a Java "Hello World" application with Mave
 During these steps background knowledge is provided to understand what we did in each step.
 Each step first contains a set of instructions that you can follow and afterwards a set of epxlanations, that describe what each instructions does.
 
-## Step 01 - Create a simple Java "Hello World" application with Maven
+## Step 01 - Create a simple Java application with Maven
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/jatoms-io/io.jatoms.tutorial.lesson01/tree/step-01)
 ### Instructions
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#*https://github.com/jatoms-io/io.jatoms.tutorial.lesson01/tree/step-01)
-
 #### Lets create a new Java project: 
 * In the command line type `mvn archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4`
-* For groupId type `io.jatoms`, for archetypeId `lesson01`, for version just hit enter, for package also just hit enter -> enter 
+* When asked for a groupId type `io.jatoms`, 
+* When asked for an archetypeId type `lesson01`
+* When asked for a version/package just take the defaults by hitting enter 
 * Your file explorer on the left now should show something like this: 
 ![result of maven quickstart archetype](images/lesson-01/maven-quickstart-archetype-result.png)
 
@@ -41,6 +42,7 @@ Each step first contains a set of instructions that you can follow and afterward
 </plugins>
 ```
 
+* Don't forget to save your pom.xml file
 * In your terminal type `cd lesson01` -> enter -> type `mvn package` -> enter
 * After downloading the internet maven should display something like this
 ![result of mvn package](images/lesson-01/maven-package-result.png)
@@ -50,25 +52,52 @@ Each step first contains a set of instructions that you can follow and afterward
 * Be awestruck by your majestic "Hello World" on the commandline ;)
 
 ### Explanations
-In this section we will have a look at each instruction stated above in detail. 
-For a more experienced Java developer this might become boring, so feel free to skip the explanations if there's nothing new for you ;)
+In this section we will have a detailed look at each instruction from above. 
+For a more experienced Java developer this might become boring, so feel free to skip the explanations if there's nothing new in them for you ;)
 
-So let's now have a detailed look at each instruction we executed, starting with 
-```md
-* In the command line type `mvn archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4`
-* For groupId type `io.jatoms`, for archetypeId `lesson01`, for version just hit enter, for package also just hit enter -> enter 
-```
-If you have ever worked with Maven before you can probably guess what is going on behind the curtain, but for those not familiar with Maven: Here comes a lenghty explanation!
+#### First Instruction
+First we will dissect the Maven command we used to create the project and also learn what Maven is in the first place.
+Below you see a picture that breaks down this command in its different parts:
+![maven command](images/lesson-01/maven-command.png)
 
-#### What is Maven and what did we do with it?
-Maven is, at its core, a plugin execution framework.
-By following the instructions stated above we we advised maven via the `mvn` command to execute the `generate` goal of the `archetype` plugin to generate a simple Java project,
-by providing the Maven coordinates (archetypeGroupId, archetypeArtifactId, archetypeVersion) of the archetype we want to use.
+Via the `mvn` command we advised Maven to execute the `generate` goal of the `archetype` plugin to use the provided parameters for finding and downloading a Maven archetype from Maven Central that is then used to create a simple Java project for us.
 
-So what is a plugin, what are goals and what is an archetype?
+...
 
-Plugins are Jars that contain classes which can be goals (or just helper classes for those goals). 
-Each goal is usually annotated with a `@Mojo` annotation (I think this stands for "Maven plain old Java object") and have an execute method that can be called by Maven:
+Phew! Quite a lot to digest in that sentence. If you are not familiar with Maven you might now wonder: 
+* "What is an archetype?"
+* "What is a goal?"
+* "... a plugin?" 
+* "... Maven Central?"
+* "Maven coordi-what?"
+* and "WTF is Maven?"
+
+Don't be afraid! We will answer each of these questions in the section below. 
+We first will see what Maven is, then what plugins and their goals are, how Maven coordinates fit into this picture and also what an archetype is.
+
+If you have ever worked with Maven before you can probably guess what is going on behind the curtain, but for those not familiar with Maven: Here comes the lenghty explanation!
+
+##### What is Maven and what did we do with it?
+> Maven is, at its core, a plugin execution framework.
+
+When you installed Maven (Well actually we installed it for you if you are using GitPod) then it already comes bundled with some plugins that are usually needed by Maven users.
+The `archetype` plugin is one of those. This plugin provides goals that can be used to generate project from archetype which  is often used to bootstrap a project, i.e., you don't need to create folders and files by yoursefl each time you start a new project. 
+
+##### What is a plugin and what are goals?
+
+> Plugins are just usual Java Jars.
+
+Maven plugin Jars should be named according to the Maven naming convention, e.g., `hello-maven-plugin`, where `hello` is the name of your plugin.
+
+As plugins are plain old Java Jars, they contain classes, which can be plugin goals. 
+In order for a class to be a goal it has to be annotated with the `@Mojo` anntoation. 
+It can also extend `AbstractMojo`, but this parent class just provides you with additional helper stuff and is not mandatory.  
+Finally, the class has to implement an `execute` method which is called by Maven when it is advised to execute this goal of your plugin.
+
+To sum it up:
+> A goal ist a Java class annotated with `@Mojo` and an `execute` method.
+
+Below you can see an example goal that is taken from the official Maven website:
 
 ```java 
 @Mojo( name = "sayhi")
@@ -80,13 +109,40 @@ public class GreetingMojo extends AbstractMojo
     }
 }
 ```
-The image below just shows grpahically how a Maven command usually looks like and how Maven is logically structured.
 
-![maven overview](images/lesson-01/maven-overview.png)
+Up until now we have explained what this part `mvn archetype:generate` of the above used command does, i.e., advise maven to execute the goal `generate` of the plugin `archetyoe`.
+But what about the rest of the command, the part with `-DarchetypeGroupId=... -DarchetypeArtifactId=... - DarchetypeVersion=...`?
 
-Regarding Maven coordinates and archetypes:
+Well, goals can have parameters that provide them with a little bit more context about their execution and what exactly they should do.
+If we adapted the above shown example goal `sayhi` a little bit more to the goal `generate` that we used in our command, then it would look like this:
 
-Maven coordinates can be seen as a unique identifier that consists of a `groupId`, an `artifactId` and a `version` which are usually given in this format:
+```java
+@Mojo( name = "generate")
+public class OurGenerationMojo extends AbstractMojo
+{
+    @Parameter( property = "generate.archetypeGroupId" )
+    private String groupId;
+
+    @Parameter( property = "generate.archetypeArtifactId" )
+    private String artifactId;
+
+    @Parameter( property = "generate.archetypeVersion" )
+    private String version;
+
+    public void execute() throws MojoExecutionException
+    {
+        downloadArchetypeFromMavenCentral(groupId, artifactId, version);
+        generateProjectFromArchetype();
+    }
+}
+```
+You can see that the provided parameters `archetypeGroupId`, `archetypeArtifactId` and `archetypeVersion` are just Maven coordinates that are used to find the archetype on Maven central and download it, which finally leads us to the question:
+
+##### What are Maven coordinates, Maven Central and Maven archetypes
+
+> Maven coordinates are unique identifiers for Jars, consisting of a `groupId`, an `artifactId` and a `version`
+
+Usually you see those coordinates given in the pom.xml for dependencies your project needs or plugins that you want to use, so usually a Maven coordinate looks like this:
 
 ```xml
 <groupId>my.domain</groupId>
@@ -94,14 +150,21 @@ Maven coordinates can be seen as a unique identifier that consists of a `groupId
 <version>1.2.3</version>
 ```
 
-Those coordinates are heavily used in [Maven Central](https://mvnrepository.com/repos/central) which is just a giant database for Jars and other Java things that you can use in your project. 
-Here the Maven coordinates are usually used to find the thing you want, for example an archetype that you want to use to create a project.
-The archetype we used is also stored in this giant database: [See here](https://search.maven.org/search?q=g:org.apache.maven.archetypes%20AND%20a:maven-archetype-quickstart)
+A Maven coordinate in itself is quite useless, as it is just an identifier. What actually makes this useful is Maven Central (and other artifact repositories)
 
-So what is an archetype? 
+> Maven Central is basically a giant database for Jars
 
-An archetype is really nothing more than a Jar that contains the same folder and file structure that we want to generate, however some names are placeholder for input values provided by the user during the archetype generation.
-The package name we provided during archetype generation is such a placeholder, which is then filled in the App.java file like this
+As each Jar in Maven Central has a Maven coordinate, it can be loacted and downloaded by tools that understand those coordinates.
+One of these tools is the `archetype` plugin that we used to generate our project. 
+It takes the provided Maven coordinates, asks Maven Central for the Jar identified by these coordinates, downloads it and uses its contents to create a Java project for us.
+
+This leads us to the last missing piece of our Maven puzzle: Maven archetypes.
+
+> A Maven archetype is a Jar containing the blueprint for files and folders 
+
+Usually this is used for a project structure, but can also be used for other things.
+The files and folders are not all statically named, but often have a placeholder as a name, so that a user can provide names for them, like we did when we provided `io.jatoms` as `package` for the archetype.
+This package name was then used by the archetype to fill in the placeholder it has in its `App.java` file:
 ```java 
 package $package;
 
@@ -118,15 +181,38 @@ public class App
 }
 ```
 
-So to summarize what this line `mvn archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4` did:
-* Tell Maven to execute the archetype plugin with the generate goal and the Maven coordinates for our archetype 
-* The plugin then asks Maven Central for the Jar at the given coordinates, dwonloads it and uses it to generate the project for us.
+So to summarize what this line `mvn archetype:generate -DarchetypeGroupId=... -DarchetypeArtifactId=... -DarchetypeVersion=...` did:
+* Tell Maven to execute the generate goal of the archetype plugin and provide Maven coordinates that identify the archetype we want to use 
+* The goal then asks Maven Central for the archetype Jar at the given coordinates, downloads it and uses it to generate the project for us with the placeholder names we provided.
+
+#### Second instruction 
+
+Now that we understand what happened during project setup, we will have a look at what we did to make an executable Jar.
+
+We first changed the content of the pom.xml file located at the root of our lesson01 project folder. This might lead to the question: 
+
+##### What is the pom.xml file?
+
+In short: 
+
+> A pom.xml file is a configuration file that lets you configure Maven
+
+However, this explanation is a little bit abstract. Of course, you now know that you can configure Maven, but what does this actually mean and what at all can I configure?
 
 
 
 * Then we adviced maven to package our application 
     * what are maven phases?
     * what did this do? -> look into target folder -> download jar. -> use 7zip or similar to open and have a look at contents, especially Manifest.MF file 
+
+
+
+
+### Further reading
+If you are interested in more in-depth knowledge about the stuff you just read then follow these links:
+* [Maven Central, the giant database containing all the Jars your heart desires](https://mvnrepository.com/repos/central)
+* [How to write your own Maven plugin](https://maven.apache.org/guides/plugin/guide-java-plugin-development.html)
+* [How to create your own Maven archetype](https://maven.apache.org/guides/mini/guide-creating-archetypes.html)
 
 ## Step 02 - Make your application OSGi compatible
 **Instructions**

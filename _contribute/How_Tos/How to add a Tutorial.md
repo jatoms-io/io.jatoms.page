@@ -123,7 +123,7 @@ The right place to provide this further reading is the third section which shoul
 
 To sum it up:
 * First talk about the **WHAT**, what to do, what result is expected
-* Then talk about the **WHY**, why do you need to do it this way and how does it work 
+* Then talk about the **WHY** and **HOW**, why do you need to do it this way and how does it work 
 * Finally provide further reading for topics that would be too much for your tutorial 
 
 #### Conclusion
@@ -134,12 +134,13 @@ This is like binge watching on Netflix but with tutorials. Provide your reader w
 ### Gitpod 
 The corresponding repository of the tuturial must be executable in gitpod, so that a reader can execute it without the need to setup everything on its own machine.
 
-This setup is mandatory as we want to provide a hassle free onboarding experience for newcomers. There is nothing worse than a tutorial that is not working although one did the same exact things as described by the author.
+This setup is mandatory as we want to provide a hassle-free onboarding experience for newcomers. There is nothing worse than a tutorial that is not working although one did the same exact things as described by the author.
 By providing a reproducible developer workspace with GitPod we reduce the risk to loose newcomers due to not working tutorials.
 Also in order to fix bugs this setup is ideal, as a user can provide the author of a tutorial with a snapshot of the workspace in the state that produced a non-expected behavior.
 
 ### Draw.io
-Diagrams and similar stuff must be done with draw.io in order to be reproducible and editable in the future
+Diagrams and similar stuff should be done with draw.io in order to be reproducible and editable in the future
 
-We all know that the only constant is change. So when we need to change some diagrams in a tutorial it would be pretty cumbersome to reprdouce the drawings one author made each time over again.
-Therefore we would liek to use draw.io whose files can be checked into GitHub and therefore be used whenever we need to change a diagram.
+We all know that the only constant is change. So when we need to change some diagrams in a tutorial it would be pretty cumbersome to reprdouce the drawings, one author once made, each time over again.
+Therefore we would like you to use draw.io as those files can be checked into GitHub and therefore be used whenever we need to change a diagram.
+Draw.io provides integration with Github, so you can easily open the Gitpod for this website and Draw.io side by side to edit diagrams and text alike and then commit both together. just don't forget to do a `git pull` each time you changed and commited a diagram.
