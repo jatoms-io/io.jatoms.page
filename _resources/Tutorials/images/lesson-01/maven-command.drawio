@@ -1,1 +1,34 @@
-<mxfile host="www.draw.io" modified="2020-01-12T11:36:46.228Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36" version="12.5.1" etag="s72wcz92XjNdQLuvs6gB" type="github"><diagram id="3c1GtHCVHKgwh0jhuo-I">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="www.draw.io" modified="2020-01-12T11:37:03.445Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36" etag="gMuvnr1C0CbcNvknzCkR" version="12.5.1" type="github">
+  <diagram id="3c1GtHCVHKgwh0jhuo-I" name="Page-1">
+    <mxGraphModel dx="1002" dy="715" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="WJJP-ojUUHOEBwB_BWkI-1" value="&lt;font style=&quot;font-size: 18px&quot;&gt;mvn&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#007FFF;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="90" y="40" width="60" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="WJJP-ojUUHOEBwB_BWkI-2" value="&lt;font style=&quot;font-size: 18px&quot;&gt;archetype:&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#00FF00;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="154" y="40" width="96" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="WJJP-ojUUHOEBwB_BWkI-3" value="&lt;font style=&quot;font-size: 18px&quot;&gt;-DarchetypeGroupId=org.apache.maven.archetypes&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#FF9933;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="354" y="40" width="430" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="WJJP-ojUUHOEBwB_BWkI-4" value="&lt;font style=&quot;font-size: 14px&quot;&gt;Plugin&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="182" y="91" width="40" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="WJJP-ojUUHOEBwB_BWkI-5" value="&lt;font style=&quot;font-size: 18px&quot;&gt;generate&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#9933FF;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="254" y="40" width="96" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="WJJP-ojUUHOEBwB_BWkI-6" value="&lt;font style=&quot;font-size: 14px&quot;&gt;Maven command&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="100" y="91" width="40" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="WJJP-ojUUHOEBwB_BWkI-7" value="&lt;font style=&quot;font-size: 14px&quot;&gt;Parameters&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="549" y="91" width="40" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="WJJP-ojUUHOEBwB_BWkI-8" value="&lt;font style=&quot;font-size: 14px&quot;&gt;Goal&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="282" y="91" width="40" height="20" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
