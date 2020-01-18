@@ -1,6 +1,6 @@
 author: jatoms.io
 title: JATOMS
-description: Atomic Building Blocks for OSGi
+description: Atomic Building Blocks for Java
 contact_page: https://twitter.com/NewsOsgi
 
 # language to use in html tag, can be overriden by page.lang
@@ -33,11 +33,11 @@ twitter_button:
 collections:
   landingpage:
     output: true
-  learn_osgi:
+  tutorials:
     output: true
     news_relevant: true
     news_icon: apps
-    navbar_title: Learn OSGi
+    navbar_title: Tutorials
     order: 10
   blog:
     output: true

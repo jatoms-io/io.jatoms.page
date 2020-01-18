@@ -13,6 +13,8 @@ Each step first contains a set of instructions that you can follow and afterward
 ## Step 01 - Create a simple Java application with Maven
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/jatoms-io/io.jatoms.tutorial.lesson01/tree/step-01)
 ### Instructions
+
+
 #### Lets create a new Java project: 
 * In the command line type `mvn archetype:generate -DarchetypeGroupId=org.apache.maven.archetypes -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4`
 * When asked for a groupId type `io.jatoms`, 
@@ -20,6 +22,7 @@ Each step first contains a set of instructions that you can follow and afterward
 * When asked for a version/package just take the defaults by hitting enter 
 * Your file explorer on the left now should show something like this: 
 ![result of maven quickstart archetype](images/lesson_01/maven-quickstart-archetype-result.png)
+
 
 #### Lets create an executable JAR:
 * Open the file `lesson01/pom.xml` and replace the `<pluginManagement>...</pluginManagement>` section with the following snippet:
@@ -47,13 +50,16 @@ Each step first contains a set of instructions that you can follow and afterward
 * After downloading the internet maven should display something like this
 ![result of mvn package](images/lesson_01/maven-package-result.png)
   
+
 #### Run Hello World:
 * In your terminal type `java -jar target/lesson01-1.0-SNAPSHOT.jar`
 * Be awestruck by your majestic "Hello World" on the commandline ;)
 
+
 ### Explanations
 In this section we will have a detailed look at each instruction from above. 
 For a more experienced Java developer this might become boring, so feel free to skip the explanations if there's nothing new in them for you ;)
+
 
 #### First Instruction
 First we will dissect the Maven command we used to create the project and also learn what Maven is in the first place.
@@ -77,14 +83,15 @@ We first will see what Maven is, then what plugins and their goals are, how Mave
 
 If you have ever worked with Maven before you can probably guess what is going on behind the curtain, but for those not familiar with Maven: Here comes the lenghty explanation!
 
+
 ##### What is Maven and what did we do with it?
 > Maven is, at its core, a plugin execution framework.
 
 When you installed Maven (Well actually we installed it for you if you are using GitPod) then it already comes bundled with some plugins that are usually needed by Maven users.
 The `archetype` plugin is one of those. This plugin provides goals that can be used to generate project from archetype which  is often used to bootstrap a project, i.e., you don't need to create folders and files by yoursefl each time you start a new project. 
 
-##### What is a plugin and what are goals?
 
+##### What is a plugin and what are goals?
 > Plugins are just usual Java Jars.
 
 Maven plugin Jars should be named according to the Maven naming convention, e.g., `hello-maven-plugin`, where `hello` is the name of your plugin.
@@ -138,8 +145,8 @@ public class OurGenerationMojo extends AbstractMojo
 ```
 You can see that the provided parameters `archetypeGroupId`, `archetypeArtifactId` and `archetypeVersion` are just Maven coordinates that are used to find the archetype on Maven central and download it, which finally leads us to the question:
 
-##### What are Maven coordinates, Maven Central and Maven archetypes
 
+##### What are Maven coordinates, Maven Central and Maven archetypes
 > Maven coordinates are unique identifiers for Jars, consisting of a `groupId`, an `artifactId` and a `version`
 
 Usually you see those coordinates given in the pom.xml for dependencies your project needs or plugins that you want to use, so usually a Maven coordinate looks like this:
@@ -185,14 +192,14 @@ So to summarize what this line `mvn archetype:generate -DarchetypeGroupId=... -D
 * Tell Maven to execute the generate goal of the archetype plugin and provide Maven coordinates that identify the archetype we want to use 
 * The goal then asks Maven Central for the archetype Jar at the given coordinates, downloads it and uses it to generate the project for us with the placeholder names we provided.
 
-#### Second instruction 
 
+#### Second instruction 
 Now that we understand what happened during project setup, we will have a look at what we did to make an executable Jar.
 
 We first changed the content of the pom.xml file located at the root of our lesson01 project folder. This might lead to the question: 
 
-##### What is the pom.xml file?
 
+##### What is the pom.xml file?
 In short: 
 
 > A pom.xml file is a configuration file that lets you configure Maven
@@ -282,6 +289,7 @@ For most of these properties Maven uses another property called `project.basedir
 
 Now that we know where Maven gets most of its basic build information from, we turn back to our own pom.xml file.
 
+##### Executable Jars
 The part of the pom.xml we touched during the tutorial is the `build` section, which, as the name already implies, configures what Maven shoudl do during the build of our project.
 To this `build` section we added a `plugin` called `maven-jar-plugin` and provided a property called `archive.manifest.mainClass` via a configuration as depicted below:
 
@@ -304,21 +312,89 @@ To this `build` section we added a `plugin` called `maven-jar-plugin` and provid
 What this does is it tells Maven to include this plugin during a build and hand it over the parameter we defined.
 The parameter is the fully qualified class name of the class in our project that has a main method in it.
 
-TODO: package -> Maven lifecycles -> goal bindings
+In order to see the result of including this plugin just go to the `target` folder of your project, download the file `lesson01-1.0-SNAPSHOT.jar` and open it with a zip program, e.g., 7zip.
+What you will see is a folder structure like this:
+```
+lesson01-1.0-SNAPSHOT.jar 
+|-- io (contains your class files)
+|-- META-INF (contains meta information about this jar)
+    |-- maven (contains pom.xml)
+    |-- MANIFEST.MF (the manifest we generated) 
+```
 
-During a build the plugin is called by Maven and uses the provided class name to create a MANIFEST.MF file in our final jar file that has now the following entry: `Main-Class: io.jatoms.App`.
-This MANIFEST.MF with its Main-Class entry in turn is used later by Java to find the class within our jar that it should execute whenn we issued the command `java -jar ...`
+Now open the `MANIFEST.MF` file to have a look at it.
+You should see something like this:
 
-TODO: Closer look at manifest for later comparison with OSGified manifest.
+```
+Manifest-Version:1.0
+Created-By: Maven Jar Plugin 3.2.0
+Build-Jdk-Spec: 11
+Main-Class: io.jatoms.App
+```
+
+There is some information about the manifest version, how it was created (by our maven-jar plugin), which jdk we used to compile it and most importantly the fully qualified path to the class that has a main method.
+This is all that is needed by the Java Virtual Machine (JVM) to execute our jar.
+Without this entry, the JVM would not know where to search for a main method and would not execute our jar.
+
+Now that we know why we added the maven-jar-plugin and what an executable jar actually is, let's take one step back and have a look at the command we used to create the jar: `mvn package`
 
 
+##### Maven build lifecycle and its phases
+As you probably noticed, we did not explicitly call any goal of the maven-jar-plugin, however maven was still able to execute something.
+It seems the syntax on how to advise maven to do something still has some surprises up its sleves.
+
+Instead of explicitly advising maven to execute the goal of a specific plugin, `maven package` advises maven to execute all phases of its build lifecycle up until the `package` phase is finished.
+Now you might ask:
+* What is the maven build lifecycle? 
+* Or what are lifecycle phases?
+
+> The Maven build lifecycle is a predefined process for building and distributing a particular artifact (project).
+This process consists of different steps that are executed one after another and such a step is called a lifecycle phase.
+
+The complete default maven build lifecycle, taken from the official maven site, has the following phases:
+
+| Phase | Description |
+| ----- | ----- |
+| validate | validate the project is correct and all necessary information is available. | 
+| initialize | initialize build state, e.g. set properties or create directories. | 
+| generate-sources | generate any source code for inclusion in compilation. | 
+| process-sources | process the source code, for example to filter any values. | 
+| generate-resources | generate resources for inclusion in the package. | 
+| process-resources | copy and process the resources into the destination directory, ready for packaging. | 
+| compile | compile the source code of the project. | 
+| process-classes | post-process the generated files from compilation, for example to do bytecode enhancement on Java classes. | 
+| generate-test-sources | generate any test source code for inclusion in compilation. | 
+| process-test-sources | process the test source code, for example to filter any values. | 
+| generate-test-resources | create resources for testing. | 
+| process-test-resources | copy and process the resources into the test destination directory. | 
+| test-compile | compile the test source code into the test destination directory | 
+| process-test-classes | post-process the generated files from test compilation, for example to do bytecode enhancement on Java classes. For Maven 2.0.5 and above. | 
+| test | run tests using a suitable unit testing framework. These tests should not require the code be packaged or deployed.  | 
+| prepare-package | perform any operations necessary to prepare a package before the actual packaging. This often results in an unpacked, processed version of the package. (Maven 2.1 and above) | 
+| package | take the compiled code and package it in its distributable format, such as a JAR. | 
+| pre-integration-test | perform actions required before integration tests are executed. This may involve things such as setting up the required environment. | 
+| integration-test | process and deploy the package if necessary into an environment where integration tests can be run. | 
+| post-integration-test | perform actions required after integration tests have been executed. This may including cleaning up the environment. | 
+| verify | run any checks to verify the package is valid and meets quality criteria. | 
+| install | install the package into the local repository, for use as a dependency in other projects locally. | 
+| deploy | done in an integration or release environment, copies the final package to the remote repository for sharing with other developers and projects. |
+
+As we can see, up until `package` there are quite some other phases that will get executed. 
+However, the phases alone still do not explain, why the maven-jar-plugin has been executed at all.
 
 
-* Then we adviced maven to package our application 
-    * what are maven phases?
-    * what did this do? -> look into target folder -> download jar. -> use 7zip or similar to open and have a look at contents, especially Manifest.MF file 
+##### Binding goals to phases
+The last missing link is to know, that each plugin can bind goals to a phase.
+That means, as soons as a plugin, which has bound one or more of its goals to a phase by default, is added to the build, by defining it in the `build` section, its bound goals will be executed as long as the phase to which they are bound is executed.
+As the maven-jar-plugin by default binds its goal to the generate-resource phase which comes before the package phase it is called althoug we merely used the command `maven package`.
 
 
+##### Third instruction
+###### Executing an executable JAR
+The last thing we did in this step was to execute the jar that was generated by our `maven package` command.
+For this we used the command `java -jar target/lesson01-1.0-SNAPSHOT.jar` which tells the JVM to execute this jar. 
+The JVM then takes that JAR looks for a manifest file at the location `META-INF/MANIFEST.MF` and uses the `Main-Class` entry to locate the class within the jar that has the main method in it.
+Finally, this method is executed by the JVM and "Hello World" is printed out on the console.
 
 
 ### Further reading
@@ -327,45 +403,19 @@ If you are interested in more in-depth knowledge about the stuff you just read t
 * [How to write your own Maven plugin](https://maven.apache.org/guides/plugin/guide-java-plugin-development.html)
 * [How to create your own Maven archetype](https://maven.apache.org/guides/mini/guide-creating-archetypes.html)
 * [Introduction to the POM](https://maven.apache.org/guides/introduction/introduction-to-the-pom.html) 
+* [Maven build lifecycle](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html)
 
 ## Step 02 - Make your application OSGi compatible
 **Instructions**
-* open pom.xml -> add 
+* open your pom.xml -> replace the maven-jar-plugin entry with this one
 ```xml
 <build>
     <plugins>
-        <!-- Use the bnd-maven-plugin and assemble the symbolic names -->
         <plugin>
-            <groupId>biz.aQute.bnd</groupId>
-            <artifactId>bnd-maven-plugin</artifactId>
-            <version>4.3.0</version>
-            <configuration>
-                <bnd><![CDATA[
-    Bundle-SymbolicName: ${project.groupId}.${project.artifactId}
-    -sources: true
-    -contract: *
-    ]]></bnd>
-            </configuration>
-            <executions>
-                <execution>
-                    <goals>
-                        <goal>bnd-process</goal>
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
-        <!-- Required to make the maven-jar-plugin pick up the bnd 
-            generated manifest. Also avoid packaging empty Jars -->
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-jar-plugin</artifactId>
-            <version>3.0.2</version>
-            <configuration>
-                <archive>
-                    <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
-                </archive>
-                <skipIfEmpty>true</skipIfEmpty>
-            </configuration>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>maven-bundle-plugin</artifactId>
+            <version>4.2.1</version>
+            <extensions>true</extensions>
         </plugin>
     </plugins>
 </build>
@@ -373,9 +423,7 @@ If you are interested in more in-depth knowledge about the stuff you just read t
 * in terminal type `mvn package` -> hit enter
 
 **Explanations**
-* What are maven plugins?
 * What does the bnd-maven-plugin do?
-    * Why is the maven-jar-plugin instruction needed?
 * what did this do? -> look into target folder -> download jar. -> use 7zip or similar to open and have a look at contents, especially Manifest.MF file and OSGi-OPT
 * What do the entries in the Manifest mean? 
 * What is OSGi from a Java developer's perspective?

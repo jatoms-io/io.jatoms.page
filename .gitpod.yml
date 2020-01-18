@@ -3,7 +3,7 @@ image:
 
 ports:
   - port: 4000
-    onOpen: open-preview
+    onOpen: open-browser
 tasks:
   - init: bundle update && bundle install
     command: bundle exec jekyll serve --host=0.0.0.0
