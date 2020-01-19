@@ -51,6 +51,20 @@ Each step first contains a set of instructions that you can follow and afterward
 ![result of mvn package](images/lesson_01/maven-package-result.png)
   
 
+#### Inspect the generated MANIFEST.MF:
+* Open the `target` folder and download `lesson01-1.0-SNAPSHOT.jar`
+* Open the downloaded jar with 7zip 
+* Navigate to `META-INF/MANIFEST.MF`
+* Open MANIFEST.MF 
+* You should see something like this:
+```
+Manifest-Version:1.0
+Created-By: Maven Jar Plugin 3.2.0
+Build-Jdk-Spec: 11
+Main-Class: io.jatoms.App
+```
+
+
 #### Run Hello World:
 * In your terminal type `java -jar target/lesson01-1.0-SNAPSHOT.jar`
 * Be awestruck by your majestic "Hello World" on the commandline ;)
@@ -406,6 +420,23 @@ If you are interested in more in-depth knowledge about the stuff you just read t
 * [Maven build lifecycle](https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html)
 
 ## Step 02 - Make your application OSGi compatible
+
+## Outline
+* Use maven bundle plugin instead of jar 
+    * Explanations: 
+        * execution -> new packaging type , what are packaging types?
+* Try to run it with old commands -> does not work
+    * Explanation:
+        * Inspect manifest -> no Main-Class
+        * explain difference between bundle / jar
+            * additional metadata
+* Add BundleActivator + activate method 
+    * Explanations:
+        * How to run code in a bundle?
+            * needs to be loaded into a larger framework that executes it
+            * needs some sort of entrypoint for the framework 
+    * Explain bundles
+
 **Instructions**
 * open your pom.xml -> replace the maven-jar-plugin entry with this one
 ```xml
