@@ -14,7 +14,7 @@
 .highlight .nc { color: {{accentColor}}} /* Name.Class */
 .highlight .nd { color: {{secondaryTextColor}} } /* Name.Decorator */
 .highlight .nf { color: {{accentColor}} } /* Name.Function */
-.highlight .nt { color: {{primaryTextColor}}; font-weight: bold; }
+.highlight .nt { color: {{accentColor}}; }
 .highlight .mf { color: {{primaryLightColor}} } /* Literal.Number.Float */
 .highlight .mh { color: {{primaryLightColor}} } /* Literal.Number.Hex */
 .highlight .mi { color: {{primaryLightColor}} } /* Literal.Number.Integer */
