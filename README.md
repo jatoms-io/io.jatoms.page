@@ -2,7 +2,7 @@
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/jatoms-io/io.jatoms.page)
 
-Site is published but not officially started yet, so content and the direction we're moving to might change quite a bit until officially published (ETA February 2020)
+Site is published but not officially started yet, so content and the direction we're moving to might change quite a bit until officially published 
 
 ## Goal 
 Provide one single source for:
