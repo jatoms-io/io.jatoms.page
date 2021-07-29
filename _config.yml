@@ -1,7 +1,7 @@
-author: jatoms.io
-title: JATOMS
-description: Atomic Building Blocks for Java
-contact_page: https://twitter.com/NewsOsgi
+author: geckoprojects.org
+title: GECKO-PROJECTS
+description: Fancy Subtitle
+contact_page: https://twitter.com/motion_data
 
 # language to use in html tag, can be overriden by page.lang
 # lang: en
@@ -10,8 +10,8 @@ contact_page: https://twitter.com/NewsOsgi
 colors:
     primary_dark: black
     primary_light: grey-darken-1
-    primary: grey-darken-3
-    accent: light-blue
+    primary: green
+    accent: orange
     primary_text: grey-darken-4
     secondary_text: grey-darken-1
     inverse_text: white
@@ -23,12 +23,12 @@ logo: logo.png
 
 # Github data, if present there will be a GitHub button in the navbar
 github_button:
-  user: jatoms-io
-  project: io.jatoms.page
+  user: geckoprojects-org
+  project: org.geckoprojects.page
 
 # Twitter data, if present there will be a Twitter button in the navbar
 twitter_button:
-  user: NewsOsgi
+  user: motion_data
 
 collections:
   landingpage:
@@ -45,10 +45,6 @@ collections:
     news_icon: chat
     navbar_title: Blog
     order: 20
-  chat:
-    output: true
-    navbar_title: Chat
-    order: 30
   contribute:
     output: true
     navbar_title: Contribute

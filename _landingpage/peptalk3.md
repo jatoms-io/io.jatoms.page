@@ -4,6 +4,6 @@ icon: people
 title: Community
 ---
 
-Become part of the Jatoms community!
+Become part of the Gecko-Projects community!
 
-For this page we created a [chat room](https://gitter.im/jatoms-io/community) on Gitter so that you can easily ask your questions, state your critics, or tell us anything else you want.
+TODO: How to contribute
